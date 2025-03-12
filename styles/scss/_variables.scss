@@ -1,0 +1,33 @@
+// Colors
+$accentColor: #8338ec;
+$accentColorHover: #b588f4;
+$textColor: #212529;
+
+// fonts
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
+  font-weight: 300;
+  src: url("../../fonts/FiraGO-Light.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../../fonts/FiraGO-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../../fonts/FiraGO-Medium.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../../fonts/FiraGO-Bold.otf") format("opentype");
+}

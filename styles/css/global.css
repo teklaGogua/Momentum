@@ -140,4 +140,67 @@ table {
 
 html {
   font-size: 62.5%;
+}
+
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
+  font-weight: 300;
+  src: url("../../fonts/FiraGO-Light.otf") format("opentype");
+}
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../../fonts/FiraGO-Regular.otf") format("opentype");
+}
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../../fonts/FiraGO-Medium.otf") format("opentype");
+}
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../../fonts/FiraGO-Bold.otf") format("opentype");
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: 3rem 12rem;
+}
+header .left-side {
+  display: flex;
+  gap: 4rem;
+}
+header .left-side-btn {
+  padding: 1rem 2rem;
+  font-size: 1.6rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "FiraGO", sans-serif;
+  font-weight: 400;
+}
+header .left-side-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+header .left-side .employee {
+  border: 1px solid #8338ec;
+  background-color: #fff;
+  color: #212529;
+}
+header .left-side .employee:hover {
+  border: 1px solid #b588f4;
+}
+header .left-side .task {
+  border: none;
+  background-color: #8338ec;
+  color: #fff;
+}
+header .left-side .task:hover {
+  background-color: #b588f4;
 }/*# sourceMappingURL=global.css.map */
