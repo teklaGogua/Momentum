@@ -1,7 +1,17 @@
 // Colors
 $accentColor: #8338ec;
 $accentColorHover: #b588f4;
-$textColor: #212529;
+$textColor: #343A40;
+$navColor: #212529;
+$borderColor: #dee2e6;
+$filtrationColor: #212529;
+$mainYellow: #F7BC30;
+$secondaryYellow: #FFD86D;
+$mainOrange: #FB5607;
+$mainPink: #FF006E;
+$mainBlue: #3A86FF;
+$mainRed: #FA4D4D;
+$mainGreen: #08A508;
 
 // fonts
 @font-face {
@@ -28,6 +38,18 @@ $textColor: #212529;
 @font-face {
   font-family: "FiraGO";
   font-style: normal;
+  font-weight: 600;
+  src: url("../../fonts/FiraGO-SemiBold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "FiraGO";
+  font-style: normal;
   font-weight: 700;
   src: url("../../fonts/FiraGO-Bold.otf") format("opentype");
+}
+
+// Helper classes
+.active {
+  display: inline-block !important;
 }

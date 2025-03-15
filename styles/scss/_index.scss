@@ -1,3 +1,8 @@
+body {
+  font-family: "FiraGO", sans-serif;
+  font-weight: 400;
+}
+
 header {
   display: flex;
   justify-content: space-between;
@@ -13,8 +18,6 @@ header {
       border-radius: 5px;
       cursor: pointer;
       transition: all 0.3s ease;
-      font-family: "FiraGO", sans-serif;
-      font-weight: 400;
 
       &:hover {
         transform: translateY(-1px);
@@ -25,7 +28,7 @@ header {
     .employee {
       border: 1px solid $accentColor;
       background-color: #fff;
-      color: $textColor;
+      color: $navColor;
 
       &:hover {
         border: 1px solid $accentColorHover;
@@ -39,6 +42,300 @@ header {
 
       &:hover {
         background-color: $accentColorHover;
+      }
+    }
+  }
+}
+
+main {
+  margin: 4rem 12rem;
+
+  .main-title {
+    font-size: 3.4rem;
+    font-weight: 600;
+  }
+
+  .filtration {
+    margin: 5.2rem 0;
+    display: flex;
+    gap: 4.5rem;
+    border: 1px solid $borderColor;
+    width: fit-content;
+
+    &-el {
+      position: relative;
+
+      &-btn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 1.25rem 1.8rem;
+        color: $filtrationColor;
+        background-color: #fff;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          .filtration-el-btn-text {
+            color: $accentColor !important;
+          }
+    
+          img {
+            filter: invert(20%) sepia(90%) saturate(5000%) hue-rotate(270deg) brightness(80%) contrast(90%);
+          }
+        }
+
+        &-text {
+          font-size: 1.6rem;
+          font-weight: 400;
+          color: $filtrationColor;
+        }
+
+        img {
+          display: none;
+          width: 2.4rem;
+          height: 2.4rem;
+          margin-left: 0.8rem;
+          transition: all 0.3s ease;
+        }
+      }
+
+      &-dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        margin-top: 1.1rem;
+        padding: 4rem 1rem 2.5rem 3rem;
+        border: 0.5px solid $accentColor;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        z-index: 10;
+
+        &-options {
+          max-height: 17.4rem;
+          width: max-content;
+          overflow-y: auto;
+          margin-bottom: 2.5rem;
+          padding-right: 38.5rem;
+
+          &-el {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2.2rem;
+            align-items: center;
+
+            svg {
+              flex-shrink: 0;
+              display: none;
+            }
+
+            &-text {
+              color: $navColor;
+              font-size: 1.6rem;
+              flex-shrink: 0;
+            }
+
+            &-img {
+              width: 2.8rem;
+              height: 2.8rem;
+              margin-right: -1.05rem;
+              border-radius: 50%;
+            }
+          }
+        }
+
+        &-btnBox {
+          display: flex;
+          justify-content: end;
+          margin-right: 2rem;
+
+          &-btn {
+            background-color: $accentColor;
+            color: #fff;
+            padding: 0.8rem 4.95rem;
+            font-size: 1.6rem;
+            border-radius: 20px;
+            border: none;
+
+            &:hover {
+              background-color: $accentColorHover;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .tasks {
+    display: flex;
+    justify-content: space-around;
+    gap: 5.2rem;
+
+    .starter {
+      .tasks-el-boxTitle {
+        background-color: $mainYellow;
+      }
+
+      .tasks-el-box-card {
+        border: 1px $mainYellow solid;
+        border-radius: 15px;
+      }
+    }
+
+    .inProgress {
+      .tasks-el-boxTitle {
+        background-color: $mainOrange;
+      }
+
+      .tasks-el-box-card {
+        border: 1px $mainOrange solid;
+        border-radius: 15px;
+      }
+    }
+
+    .testing {
+      .tasks-el-boxTitle {
+        background-color: $mainPink;
+      }
+
+      .tasks-el-box-card {
+        border: 1px $mainPink solid;
+        border-radius: 15px;
+      }
+    }
+
+    .finished {
+      .tasks-el-boxTitle {
+        background-color: $mainBlue;
+      }
+
+      .tasks-el-box-card {
+        border: 1px $mainBlue solid;
+        border-radius: 15px;
+      }
+    }
+
+    &-el {
+      width: 38.1rem;
+
+      &-boxTitle {
+        padding: 1.595rem 0;
+        border-radius: 10px;
+        text-align: center;
+        margin-bottom: 3rem;
+
+        &-title {
+          font-size: 2rem;
+          font-weight: 500;
+          color: #fff;
+        }
+      }
+
+      &-box {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+
+        &-card {
+          display: flex;
+          flex-direction: column;
+          gap: 2.8rem;
+          border-radius: 15px;
+          padding: 2rem;
+          height: 24.1rem;
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+          color: $textColor;
+
+          &-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2rem;
+
+            &-tags {
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+
+              &-priority {
+                display: flex;
+                align-items: center;
+                border: 0.5px $textColor solid;
+                width: 8.6rem;
+                height: 2.6rem;
+                border-radius: 5px;
+                font-weight: 500;
+
+                img {
+                  width: 2.4rem;
+                  height: 2.4rem;
+                  padding: 0.4rem;
+                }
+              }
+
+              &-department {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 15px;
+                color: #fff;
+                padding: 0 0.5rem;
+                min-width: 7rem;
+                max-width: 9rem;
+                height: 2.4rem;
+              }
+            }
+          }
+        }
+
+        &-text {
+          margin: 0 1.05rem;
+
+          &-title {
+            font-size: 1.5em;
+            font-weight: 500;
+            margin-bottom: 1.2rem;
+          }
+
+          &-description {
+            font-size: 1.4rem;
+            line-height: 1.2;
+          }
+        }
+
+        &-info {
+          justify-self: end;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: auto;
+
+          img {
+            width: 3.1rem;
+            height: 3.1rem;
+            border-radius: 50%;
+          }
+
+          &-comments {
+            display: flex;
+            align-items: center;
+            gap: 0.074rem;
+
+            img {
+              width: 2.2rem;
+              height: 2.2rem;
+            }
+
+            p {
+              font-size: 1.4rem;
+            }
+          }
+        }
       }
     }
   }

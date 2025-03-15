@@ -21,5 +21,255 @@
         <button class="left-side-btn task">+ შექმენი ახალი დავალება</button>
       </nav>
     </header>
+
+    <main>
+      <h1 class="main-title">დავალებების გვერდი</h1>
+
+      <div class="filtration">
+        <div class="filtration-el">
+          <button class="filtration-el-btn" data-dropdown="department">
+            <p class="filtration-el-btn-text">დეპარტამენტი</p>
+            <img
+              src="images/icons/arrow-down.svg"
+              alt="arrow down icon"
+              class="arrow-down active"
+            />
+            <img
+              src="images/icons/arrow-up.svg"
+              alt="arrow up icon"
+              class="arrow-up"
+            />
+          </button>
+          <div class="filtration-el-dropdown" id="department-dropdown">
+            <div
+              class="filtration-el-dropdown-options"
+              id="departments-container"
+            ></div>
+            <div class="filtration-el-dropdown-btnBox">
+              <button class="filtration-el-dropdown-btnBox-btn">არჩევა</button>
+            </div>
+          </div>
+        </div>
+        <div class="filtration-el">
+          <button class="filtration-el-btn" data-dropdown="priority">
+            <p class="filtration-el-btn-text">პრიორიტეტი</p>
+            <img
+              src="images/icons/arrow-down.svg"
+              alt="arrow down icon"
+              class="arrow-down active"
+            />
+            <img
+              src="images/icons/arrow-up.svg"
+              alt="arrow up icon"
+              class="arrow-up"
+            />
+          </button>
+          <div class="filtration-el-dropdown" id="priority-dropdown">
+            <div class="filtration-el-dropdown-options">
+              <div class="filtration-el-dropdown-options-el">
+                <div class="icon-for-marking">
+                  <svg
+                    class="filtration-el-dropdown-options-el-checked"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="0.75"
+                      y="0.75"
+                      width="20.5"
+                      height="20.5"
+                      rx="5.25"
+                      stroke="#8338EC"
+                      stroke-width="1.5"
+                    />
+                    <path
+                      d="M16.3334 7.33325L9.00008 14.6666L5.66675 11.3333"
+                      stroke="#8338EC"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <svg
+                    class="filtration-el-dropdown-options-el-empty active"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="0.75"
+                      y="0.75"
+                      width="20.5"
+                      height="20.5"
+                      rx="5.25"
+                      stroke="#8338EC"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                </div>
+                <p class="filtration-el-dropdown-options-el-text">დაბალი</p>
+              </div>
+              <div class="filtration-el-dropdown-options-el">
+                <div class="icon-for-marking">
+                  <svg
+                    class="filtration-el-dropdown-options-el-checked"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="0.75"
+                      y="0.75"
+                      width="20.5"
+                      height="20.5"
+                      rx="5.25"
+                      stroke="#8338EC"
+                      stroke-width="1.5"
+                    />
+                    <path
+                      d="M16.3334 7.33325L9.00008 14.6666L5.66675 11.3333"
+                      stroke="#8338EC"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <svg
+                    class="filtration-el-dropdown-options-el-empty active"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="0.75"
+                      y="0.75"
+                      width="20.5"
+                      height="20.5"
+                      rx="5.25"
+                      stroke="#8338EC"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                </div>
+                <p class="filtration-el-dropdown-options-el-text">საშუალო</p>
+              </div>
+              <div class="filtration-el-dropdown-options-el">
+                <div class="icon-for-marking">
+                  <svg
+                    class="filtration-el-dropdown-options-el-checked"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="0.75"
+                      y="0.75"
+                      width="20.5"
+                      height="20.5"
+                      rx="5.25"
+                      stroke="#8338EC"
+                      stroke-width="1.5"
+                    />
+                    <path
+                      d="M16.3334 7.33325L9.00008 14.6666L5.66675 11.3333"
+                      stroke="#8338EC"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <svg
+                    class="filtration-el-dropdown-options-el-empty active"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="0.75"
+                      y="0.75"
+                      width="20.5"
+                      height="20.5"
+                      rx="5.25"
+                      stroke="#8338EC"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                </div>
+                <p class="filtration-el-dropdown-options-el-text">მაღალი</p>
+              </div>
+            </div>
+            <div class="filtration-el-dropdown-btnBox">
+              <button class="filtration-el-dropdown-btnBox-btn">არჩევა</button>
+            </div>
+          </div>
+        </div>
+        <div class="filtration-el">
+          <button class="filtration-el-btn" data-dropdown="employee">
+            <p class="filtration-el-btn-text">თანამშრომელი</p>
+            <img
+              src="images/icons/arrow-down.svg"
+              alt="arrow down icon"
+              class="arrow-down active"
+            />
+            <img
+              src="images/icons/arrow-up.svg"
+              alt="arrow up icon"
+              class="arrow-up"
+            />
+          </button>
+          <div class="filtration-el-dropdown" id="employee-dropdown">
+            <div
+              class="filtration-el-dropdown-options"
+              id="employees-container"
+            ></div>
+            <div class="filtration-el-dropdown-btnBox">
+              <button class="filtration-el-dropdown-btnBox-btn">არჩევა</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tasks">
+        <div class="tasks-el starter">
+          <div class="tasks-el-boxTitle">
+            <h3 class="tasks-el-boxTitle-title">დასაწყისში</h3>
+          </div>
+          <div class="tasks-el-box" id="starter"></div>
+        </div>
+        <div class="tasks-el inProgress">
+          <div class="tasks-el-boxTitle">
+            <h3 class="tasks-el-boxTitle-title">პროგრესში</h3>
+          </div>
+          <div class="tasks-el-box" id="inProgress"></div>
+        </div>
+        <div class="tasks-el testing">
+          <div class="tasks-el-boxTitle">
+            <h3 class="tasks-el-boxTitle-title">მზად ტესტირებისთვის</h3>
+          </div>
+          <div class="tasks-el-box" id="testing"></div>
+        </div>
+        <div class="tasks-el finished">
+          <div class="tasks-el-boxTitle">
+            <h3 class="tasks-el-boxTitle-title">დასრულებული</h3>
+          </div>
+          <div class="tasks-el-box" id="finished"></div>
+        </div>
+      </div>
+    </main>
+
+    <script src="js/script.js"></script>
   </body>
 </html>
