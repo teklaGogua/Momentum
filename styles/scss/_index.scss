@@ -82,9 +82,10 @@ main {
           .filtration-el-btn-text {
             color: $accentColor !important;
           }
-    
+
           img {
-            filter: invert(20%) sepia(90%) saturate(5000%) hue-rotate(270deg) brightness(80%) contrast(90%);
+            filter: invert(20%) sepia(90%) saturate(5000%) hue-rotate(270deg)
+              brightness(80%) contrast(90%);
           }
         }
 
@@ -117,7 +118,10 @@ main {
         z-index: 10;
 
         &-options {
-          max-height: 17.4rem;
+          display: flex;
+          flex-direction: column;
+          gap: 2.2rem;
+          max-height: 18.4rem;
           width: max-content;
           overflow-y: auto;
           margin-bottom: 2.5rem;
@@ -126,7 +130,6 @@ main {
           &-el {
             display: flex;
             gap: 1.5rem;
-            margin-bottom: 2.2rem;
             align-items: center;
 
             svg {
@@ -284,9 +287,9 @@ main {
                 justify-content: center;
                 border-radius: 15px;
                 color: #fff;
-                padding: 0 0.5rem;
-                min-width: 7rem;
-                max-width: 9rem;
+                padding: 0 1.5rem;
+                min-width: 9rem;
+                max-width: 12rem;
                 height: 2.4rem;
               }
             }
