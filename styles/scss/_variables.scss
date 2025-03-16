@@ -4,6 +4,7 @@ $accentColorHover: #b588f4;
 $textColor: #343A40;
 $navColor: #212529;
 $borderColor: #dee2e6;
+$inputColor: #CED4DA;
 $filtrationColor: #212529;
 $mainYellow: #F7BC30;
 $secondaryYellow: #FFD86D;
@@ -52,4 +53,8 @@ $mainGreen: #08A508;
 // Helper classes
 .active {
   display: inline-block !important;
+}
+
+.active-flex {
+  display: flex !important;
 }

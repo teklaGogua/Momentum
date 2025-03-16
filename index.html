@@ -8,6 +8,96 @@
     <link rel="stylesheet" href="./styles/css/global.css" />
   </head>
   <body>
+    <div class="modal-overlay">
+      <dialog class="modal">
+        <img
+          src="images/icons/cancel.svg"
+          alt="Cancel Btn"
+          id="cancelBtn"
+          class="cancel"
+        />
+        <div class="modal-header">
+          <h2 class="modal-header-title">თანამშრომლის დამატება</h2>
+        </div>
+        <form class="modal-form">
+          <div class="modal-form-row">
+            <div class="modal-form-row-col">
+              <label class="modal-form-row-col-lable">სახელი*</label>
+              <input type="text" class="modal-form-row-col-input" required />
+            </div>
+            <div class="modal-form-row-col">
+              <label class="modal-form-row-col-lable">გვარი*</label>
+              <input type="text" class="modal-form-row-col-input" required />
+            </div>
+          </div>
+          <div class="modal-form-col">
+            <p class="modal-form-row-col-lable">ავატარი*</p>
+            <div class="modal-form-row-col-imgBoX" id="custom-upload">
+              <div class="modal-form-row-col-imgBoX-upload active-flex">
+                <img
+                  src="images/icons/uploadImg.svg"
+                  alt="Upload img icon"
+                  class="modal-form-row-col-imgBoX-upload-img"
+                />
+                <p class="modal-form-row-col-imgBoX-upload-ext">ატვირთე ფოტო</p>
+                <input
+                  type="file"
+                  id="profile-pic"
+                  name="profile-pic"
+                  accept="image/*"
+                  required
+                  style="display: none"
+                />
+              </div>
+              <div class="modal-form-row-col-imgBoX-avatar">
+                <img
+                  src=""
+                  alt="avatar"
+                  class="modal-form-row-col-imgBoX-avatar-img"
+                />
+                <img
+                  src="images/icons/trash.svg"
+                  alt="delete img icon"
+                  class="modal-form-row-col-imgBoX-avatar-delete"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-form-col" id="departmentBox">
+            <label class="modal-form-row-col-lable">დეპარტამენტი*</label>
+            <select
+              class="modal-form-row-col-input"
+              id="department"
+              name="department"
+              required
+            >
+              <option value="" selected disabled></option>
+              <option value="HR">HR</option>
+              <!-- Should be generated from back -->
+              <option value="Development">განვითარება</option>
+              <option value="Marketing">მარკეტინგი</option>
+              <option value="Design">დიზაინი</option>
+            </select>
+          </div>
+          <div class="modal-form-row btn-box">
+            <button
+              class="modal-form-row-col-btn cancel"
+              id="cancel"
+            >
+              გაუქმება
+            </button>
+            <button
+              type="submit"
+              class="modal-form-row-col-btn"
+              id="addEmployee"
+            >
+              დაამატე თანამშრომელი
+            </button>
+          </div>
+        </form>
+      </dialog>
+    </div>
+
     <header>
       <div class="right-side">
         <img

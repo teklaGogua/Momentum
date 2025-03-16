@@ -1,3 +1,4 @@
+@charset "UTF-8";
 *,
 *::before,
 *::after {
@@ -174,6 +175,10 @@ html {
 }
 .active {
   display: inline-block !important;
+}
+
+.active-flex {
+  display: flex !important;
 }
 
 body {
@@ -460,4 +465,173 @@ main .tasks-el-box-info-comments img {
 }
 main .tasks-el-box-info-comments p {
   font-size: 1.4rem;
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(13, 15, 16, 0.15);
+  z-index: 1000;
+}
+.modal-overlay .modal {
+  position: relative;
+  margin: auto !important;
+  margin-top: 11.8rem !important;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 91.5rem;
+  padding: 11.7rem 5rem 6rem 5rem;
+  border: none;
+  z-index: 1001;
+}
+.modal-overlay .modal #cancelBtn {
+  position: absolute;
+  right: 50px;
+  top: 40px;
+  cursor: pointer;
+}
+.modal-overlay .modal-header {
+  text-align: center;
+  margin-bottom: 4.5rem;
+}
+.modal-overlay .modal-header-title {
+  font-size: 3.2rem;
+  font-weight: 500;
+}
+.modal-overlay .modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem;
+}
+.modal-overlay .modal-form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 4.5rem;
+}
+.modal-overlay .modal-form-row-col {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.modal-overlay .modal-form-row-col-lable {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.modal-overlay .modal-form-row-col-input {
+  padding: 1.4rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  margin: 0.3rem 0;
+}
+.modal-overlay .modal-form-row-col-imgBoX {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed #d1d5db;
+  border-radius: 8px;
+  height: 12rem;
+  margin-top: 0.8rem;
+}
+.modal-overlay .modal-form-row-col-imgBoX-upload {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+.modal-overlay .modal-form-row-col-imgBoX-upload-text {
+  font-weight: 400;
+}
+.modal-overlay .modal-form-row-col-imgBoX-avatar {
+  display: none;
+  position: relative;
+}
+.modal-overlay .modal-form-row-col-imgBoX-avatar-img {
+  width: 8.8rem;
+  height: 8.8rem;
+  border-radius: 50%;
+}
+.modal-overlay .modal-form-row-col-imgBoX-avatar-delete {
+  position: absolute;
+  right: -10px;
+  bottom: -5px;
+  padding: 1rem;
+  background-color: #fff;
+  border: 0.3px solid #6c757d;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.modal-overlay .modal-form-row-col-btn {
+  border: none;
+  background-color: none;
+  padding: 1.6rem 1.15rem;
+  border-radius: 5px;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+.modal-overlay .modal-form .btn-box {
+  display: flex;
+  justify-content: end;
+  gap: 2.2rem;
+}
+.modal-overlay .modal-form .btn-box #cancel {
+  background-color: #fff;
+  border: 1px solid #8338ec;
+  transition: all 0.3s;
+}
+.modal-overlay .modal-form .btn-box #cancel:hover {
+  border: 1px solid #b588f4;
+}
+.modal-overlay .modal-form .btn-box #addEmployee {
+  background-color: #8338ec;
+  color: #fff;
+  transition: all 0.3s;
+}
+.modal-overlay .modal-form .btn-box #addEmployee:hover {
+  background-color: #b588f4;
+}
+.modal-overlay .modal-form #departmentBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.modal-overlay .modal-form #departmentBox #department {
+  justify-self: start;
+}
+.modal-overlay .modal-form #departmentBox select.modal-form-row-col-input {
+  width: 50%;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-image: url("../../images/icons/arrow-down.svg");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.5em;
+  padding-right: 3.5rem !important;
+  cursor: pointer;
+}
+.modal-overlay .modal-form #departmentBox .dropdown::after {
+  display: none;
+}
+
+/* Dropdown styling */
+.dropdown {
+  position: relative;
+}
+
+.dropdown::after {
+  content: "▼";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  font-size: 10px;
+  pointer-events: none;
 }/*# sourceMappingURL=global.css.map */

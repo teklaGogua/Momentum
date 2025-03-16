@@ -208,12 +208,15 @@ filtrationBtns.forEach((btn) => {
     const arrowUp = btn.querySelector(".arrow-up");
     const arrowDown = btn.querySelector(".arrow-down");
     const text = btn.querySelector("p");
-    
+
     dropdown.classList.toggle("active");
     arrowUp.classList.toggle("active");
     arrowDown.classList.toggle("active");
-    text.style.color = text.style.color === "rgb(131, 56, 236)" ? "rgb(33, 37, 41)" : "rgb(131, 56, 236)";
-    
+    text.style.color =
+      text.style.color === "rgb(131, 56, 236)"
+        ? "rgb(33, 37, 41)"
+        : "rgb(131, 56, 236)";
+
     if (previouslyClickedBtn && previouslyClickedBtn !== btn) {
       const prevDropdownId = previouslyClickedBtn.getAttribute("data-dropdown");
       const prevDropdown = document.getElementById(
@@ -353,5 +356,89 @@ async function fetchData() {
     console.error("Error: ", error);
   }
 }
-
 fetchData();
+
+// Modal
+// Select the div and file input
+const dialog = document.querySelector("dialog");
+const form = document.querySelector(".modal-form");
+const uploadBox = document.getElementById("custom-upload");
+const fileInput = document.getElementById("profile-pic");
+const uploadContant = document.querySelector(
+  ".modal-form-row-col-imgBoX-upload"
+);
+const avatarBox = document.querySelector(".modal-form-row-col-imgBoX-avatar");
+const avatarImg = document.querySelector(
+  ".modal-form-row-col-imgBoX-avatar-img"
+);
+const deleteImg = document.querySelector(
+  ".modal-form-row-col-imgBoX-avatar-delete"
+);
+const cancelBtns = document.querySelectorAll(".cancel");
+const employeeBtns = document.querySelectorAll(".employee");
+const modalOverlay = document.querySelector(".modal-overlay");
+
+// Open modal
+employeeBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    dialog.showModal();
+    modalOverlay.classList.add("active");
+  });
+});
+
+// Close dialog on cancel
+cancelBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    dialog.close();
+    modalOverlay.classList.remove("active");
+  });
+});
+
+// Close when clicking outside of the dialog
+dialog.addEventListener("click", (e) => {
+  const dialogDimensions = dialog.getBoundingClientRect();
+  if (
+    e.clientX < dialogDimensions.left ||
+    e.clientX > dialogDimensions.right ||
+    e.clientY < dialogDimensions.top ||
+    e.clientY > dialogDimensions.bottom
+  ) {
+    dialog.close();
+    modalOverlay.classList.remove("active");
+  }
+});
+
+// When div is clicked, trigger file input click
+uploadBox.addEventListener("click", function () {
+  fileInput.click();
+});
+
+// Show a preview of the selected image
+fileInput.addEventListener("change", function (event) {
+  const file = event.target.files[0];
+  if (file) {
+    if (file.size > 600 * 1024) {
+      alert("ფაილი უნდა იყოს მაქსიმუმ 600KB!");
+      fileInput.value = "";
+      return;
+    }
+
+    uploadContant.classList.remove("active-flex");
+    avatarBox.classList.add("active");
+    fileInput.disabled = true;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      avatarImg.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// Delete selected Img
+deleteImg.addEventListener("click", () => {
+  uploadContant.classList.add("active-flex");
+  avatarBox.classList.remove("active");
+  fileInput.disabled = false;
+});
