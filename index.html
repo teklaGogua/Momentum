@@ -23,11 +23,21 @@
           <div class="modal-form-row">
             <div class="modal-form-row-col">
               <label class="modal-form-row-col-lable">სახელი*</label>
-              <input type="text" class="modal-form-row-col-input" required />
+              <input
+                type="text"
+                class="modal-form-row-col-input"
+                id="name"
+                required
+              />
             </div>
             <div class="modal-form-row-col">
               <label class="modal-form-row-col-lable">გვარი*</label>
-              <input type="text" class="modal-form-row-col-input" required />
+              <input
+                type="text"
+                class="modal-form-row-col-input"
+                id="surname"
+                required
+              />
             </div>
           </div>
           <div class="modal-form-col">
@@ -52,6 +62,7 @@
               <div class="modal-form-row-col-imgBoX-avatar">
                 <img
                   src=""
+                  id="avatar"
                   alt="avatar"
                   class="modal-form-row-col-imgBoX-avatar-img"
                 />
@@ -70,20 +81,10 @@
               id="department"
               name="department"
               required
-            >
-              <option value="" selected disabled></option>
-              <option value="HR">HR</option>
-              <!-- Should be generated from back -->
-              <option value="Development">განვითარება</option>
-              <option value="Marketing">მარკეტინგი</option>
-              <option value="Design">დიზაინი</option>
-            </select>
+            ></select>
           </div>
           <div class="modal-form-row btn-box">
-            <button
-              class="modal-form-row-col-btn cancel"
-              id="cancel"
-            >
+            <button class="modal-form-row-col-btn cancel" id="cancel">
               გაუქმება
             </button>
             <button

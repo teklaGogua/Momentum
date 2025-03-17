@@ -316,6 +316,24 @@ main .filtration-el-dropdown-options-el-img {
   margin-right: -1.05rem;
   border-radius: 50%;
 }
+main .filtration-el-dropdown-options .add-employee-filtration {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+main .filtration-el-dropdown-options .add-employee-filtration .add-text {
+  color: #8338ec;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+main .filtration-el-dropdown-options .add-employee-filtration:hover .add-text {
+  color: #b588f4;
+}
+main .filtration-el-dropdown-options .add-employee-filtration:hover .add-img-fill {
+  fill: #b588f4;
+}
+main .filtration-el-dropdown-options .add-employee-filtration:hover .add-img-stroke {
+  stroke: #b588f4;
+}
 main .filtration-el-dropdown-btnBox {
   display: flex;
   justify-content: end;

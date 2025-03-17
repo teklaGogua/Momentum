@@ -4,6 +4,8 @@ let previouslyClickedBtn = null;
 const checkBox = document.querySelectorAll(".filtration-el-dropdown-options");
 const departmentsContainer = document.getElementById("departments-container");
 const employeesContainer = document.getElementById("employees-container");
+const departmentsModal = document.getElementById("department");
+
 const georgianMonths = [
   "იან",
   "თებ",
@@ -59,9 +61,11 @@ async function fetchDepartments() {
     const data = await res.json();
 
     let departmentHTML = "";
+    let departmentModalHTML = `<option value="" selected disabled></option>`;
     data.forEach((department) => {
       // Get colors
       const color = departments[department.id][1];
+
       departmentHTML += `<div class="filtration-el-dropdown-options-el">
                 <div class="icon-for-marking">
                   <svg
@@ -110,8 +114,11 @@ async function fetchDepartments() {
                 </div>
                 <p class="filtration-el-dropdown-options-el-text">${department.name}</p>
               </div>`;
+
+      departmentModalHTML += `<option value="${department.id}">${department.name}</option>`;
     });
     departmentsContainer.innerHTML = departmentHTML;
+    departmentsModal.innerHTML = departmentModalHTML;
   } catch (error) {
     console.log("Error: ", error);
   }
@@ -137,7 +144,15 @@ async function fetchEmployees() {
 
     const data = await res.json();
 
-    let employeeHTML = "";
+    let employeeHTML = `<div class="filtration-el-dropdown-options-el add-employee-filtration" onclick="openModal()">
+                  <svg 
+                  class="active" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect class="add-img-stroke" x="0.75" y="0.75" width="16.5" height="16.5" rx="8.25" stroke="#8338EC" stroke-width="1.5"/>
+                  <path class="add-img-fill" d="M9.576 8.456H13.176V9.656H9.576V13.304H8.256V9.656H4.656V8.456H8.256V4.808H9.576V8.456Z" fill="#8338EC"/>
+                  </svg>
+                <p class="filtration-el-dropdown-options-el-text add-text">დაამატე თანამშრომელი</p>
+              </div>`;
+
     data.forEach((employee) => {
       employeeHTML += `<div class="filtration-el-dropdown-options-el">
                 <div class="icon-for-marking">
@@ -377,12 +392,21 @@ const deleteImg = document.querySelector(
 const cancelBtns = document.querySelectorAll(".cancel");
 const employeeBtns = document.querySelectorAll(".employee");
 const modalOverlay = document.querySelector(".modal-overlay");
+const addEmployeeFiltration = document.querySelector(
+  ".add-employee-filtration"
+);
+const addEmployeeBtn = document.getElementById("addEmployee");
+let avatar;
 
 // Open modal
+function openModal() {
+  dialog.showModal();
+  modalOverlay.classList.add("active");
+}
+
 employeeBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
-    dialog.showModal();
-    modalOverlay.classList.add("active");
+    openModal();
   });
 });
 
@@ -416,9 +440,9 @@ uploadBox.addEventListener("click", function () {
 
 // Show a preview of the selected image
 fileInput.addEventListener("change", function (event) {
-  const file = event.target.files[0];
-  if (file) {
-    if (file.size > 600 * 1024) {
+  avatar = event.target.files[0];
+  if (avatar) {
+    if (avatar.size > 600 * 1024) {
       alert("ფაილი უნდა იყოს მაქსიმუმ 600KB!");
       fileInput.value = "";
       return;
@@ -432,7 +456,7 @@ fileInput.addEventListener("change", function (event) {
     reader.onload = function (e) {
       avatarImg.src = e.target.result;
     };
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(avatar);
   }
 });
 
@@ -442,3 +466,42 @@ deleteImg.addEventListener("click", () => {
   avatarBox.classList.remove("active");
   fileInput.disabled = false;
 });
+
+// POST employee data
+async function addEmployees() {
+  const name = document.getElementById("name").value;
+  const surname = document.getElementById("surname").value;
+  const department_id = document.getElementById("department").value;
+
+  const formData = new FormData();
+  formData.append("name", name);
+  formData.append("surname", surname);
+  formData.append("avatar", avatar);
+  formData.append("department_id", department_id);
+
+  if (!name || !surname || !department_id || !avatar) {
+    return;
+  }
+
+  try {
+    const res = await fetch(
+      "https://momentum.redberryinternship.ge/api/employees ",
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
+        body: formData,
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+  } catch (error) {
+    console.log("Error: ", error);
+  }
+}
+
+addEmployeeBtn.addEventListener("click", addEmployees);

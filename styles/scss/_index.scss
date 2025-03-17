@@ -150,6 +150,31 @@ main {
               border-radius: 50%;
             }
           }
+
+          .add-employee-filtration {
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            .add-text {
+              color: $accentColor;
+              font-size: 1.6rem;
+              font-weight: 400;
+            }
+
+            &:hover {
+              .add-text {
+                color: $accentColorHover;
+              }
+
+              .add-img-fill {
+                fill: $accentColorHover;
+              }
+
+              .add-img-stroke {
+                stroke: $accentColorHover;
+              }
+            }
+          }
         }
 
         &-btnBox {
