@@ -321,7 +321,7 @@ main {
                 color: #fff;
                 padding: 0 1.5rem;
                 min-width: 9rem;
-                max-width: 12rem;
+                max-width: 17rem;
                 height: 2.4rem;
               }
             }
@@ -550,20 +550,4 @@ main {
       }
     }
   }
-}
-
-/* Dropdown styling */
-.dropdown {
-  position: relative;
-}
-
-.dropdown::after {
-  content: "▼";
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #9ca3af;
-  font-size: 10px;
-  pointer-events: none;
 }

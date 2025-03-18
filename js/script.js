@@ -307,7 +307,7 @@ async function fetchData() {
       const date = new Date(task.due_date);
 
       const day = date.getUTCDate();
-      const month = date.getUTCMonth();
+      const month = date.getUTCMonth() + 1;
       const year = date.getUTCFullYear();
 
       const monthName = georgianMonths[month];
@@ -325,7 +325,7 @@ async function fetchData() {
               <div class="tasks-el-box-card-header">
                 <div class="tasks-el-box-card-header-tags">
                   <div class="tasks-el-box-card-header-tags-priority"  style="border-color: ${borderColor} !important;">
-                    <img src="${task.priority.icon}" />
+                    <img src="${task.priority.icon}" alt="priority icon" />
                     <p style="color: ${borderColor} !important;">${
         task.priority.name
       }</p>

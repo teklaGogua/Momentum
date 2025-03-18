@@ -1,0 +1,115 @@
+main {
+  .task-container {
+    display: flex;
+    justify-content: space-between;
+
+    .task {
+      &-info {
+        max-width: 71.5rem;
+        margin-bottom: 6.3rem;
+
+        &-tags {
+          div {
+            height: 3.2rem !important;
+          }
+
+          #priority-box {
+            width: 10.6rem;
+          }
+
+          #priority-name {
+            font-size: 1.6rem;
+          }
+          #department-name {
+            font-size: 1.6rem;
+          }
+        }
+
+        &-title {
+          font-weight: 600;
+          font-size: 3.4rem;
+          margin-top: 1.2rem;
+          margin-bottom: 3.6rem;
+          color: $navColor;
+        }
+
+        &-text {
+          font-weight: 400;
+          font-size: 1.8rem;
+          line-height: 1.5;
+        }
+      }
+
+      &-details {
+        min-width: 49.3rem;
+
+        &-title {
+          color: #2a2a2a;
+          font-size: 2.4rem;
+          font-weight: 500;
+          margin-bottom: 2.8rem;
+        }
+
+        &-el {
+          display: flex;
+          align-items: center;
+          gap: 7rem;
+          min-height: 7rem;
+
+          &-heading {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            min-width: 16.4rem;
+
+            p {
+              font-size: 1.6rem;
+              color: #474747;
+            }
+          }
+
+          &-info {
+            display: flex;
+            flex-grow: 1;
+            gap: 0.55rem;
+
+            p {
+              font-size: 1.4rem;
+              color: #0d0f10;
+            }
+
+            img {
+              width: 3.2rem;
+              height: 3.2rem;
+              border-radius: 50%;
+            }
+
+            &-text {
+              margin-top: -0.5rem;
+
+              span {
+                display: inline-block;
+                margin-bottom: 0.15rem;
+                color: #474747;
+                font-size: 1.1rem;
+                font-weight: 300;
+              }
+            }
+
+            select {
+              width: 100%;
+              border-radius: 5px;
+              padding: 1.4rem 1.4rem;
+
+              option {
+                font-size: 1.4rem;
+                font-weight: 300;
+                color: #0d0f10;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

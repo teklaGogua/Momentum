@@ -22,7 +22,66 @@
       </nav>
     </header>
 
-    <main></main>
+    <main>
+      <div class="task-container">
+        <div class="task">
+          <div class="task-info">
+            <div class="task-info-tags tasks-el-box-card-header-tags">
+              <div
+                class="tasks-el-box-card-header-tags-priority"
+                id="priority-box"
+              >
+                <img src="" alt="priority icon" id="priority-img" />
+                <p id="priority-name"></p>
+              </div>
+              <div
+                class="tasks-el-box-card-header-tags-department"
+                id="department-box"
+              >
+                <p id="department-name"></p>
+              </div>
+            </div>
+            <h2 class="task-info-title" id="title"></h2>
+            <p class="task-info-text" id="description"></p>
+          </div>
+          <div class="task-details">
+            <h3 class="task-details-title">დავალების დეტალები</h3>
+            <div class="task-details-el">
+              <div class="task-details-el-heading">
+                <img src="../images/icons/pie-chart.svg" alt="status icon" />
+                <p>სტატუსი</p>
+              </div>
+              <div class="task-details-el-info">
+                <select id="status" name="status"></select>
+              </div>
+            </div>
+            <div class="task-details-el">
+              <div class="task-details-el-heading">
+                <img src="../images/icons/employee.svg" alt="employee icon" />
+                <p>თანამშრომლი</p>
+              </div>
+              <div class="task-details-el-info">
+                <img src="" alt="Avatar" id="avatar" />
+                <div class="task-details-el-info-text">
+                  <span id="department-fullName"></span>
+                  <p id="employeeName"></p>
+                </div>
+              </div>
+            </div>
+            <div class="task-details-el">
+              <div class="task-details-el-heading">
+                <img src="../images/icons/calendar.svg" alt="calendar icon" />
+                <p>დავალების ვადა</p>
+              </div>
+              <div class="task-details-el-info">
+                <p id="date"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="comments"></div>
+      </div>
+    </main>
 
     <script src="../js/task-page.js"></script>
   </body>
