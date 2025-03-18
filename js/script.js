@@ -321,7 +321,7 @@ async function fetchData() {
         description = task.description.substring(0, 100) + "...";
       }
 
-      taskHTML = `<div class="tasks-el-box-card">
+      taskHTML = `<div class="tasks-el-box-card" onclick="openTask(${task.id})">
               <div class="tasks-el-box-card-header">
                 <div class="tasks-el-box-card-header-tags">
                   <div class="tasks-el-box-card-header-tags-priority"  style="border-color: ${borderColor} !important;">
@@ -505,3 +505,8 @@ async function addEmployees() {
 }
 
 addEmployeeBtn.addEventListener("click", addEmployees);
+
+// Open card page
+function openTask(taskId) {
+  window.location.href = `/pages/task-page.html?id=${taskId}`;
+}

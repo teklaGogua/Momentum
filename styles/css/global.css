@@ -411,6 +411,12 @@ main .tasks-el-box-card {
   height: 24.1rem;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   color: #343A40;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+main .tasks-el-box-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 main .tasks-el-box-card-header {
   display: flex;
