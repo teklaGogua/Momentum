@@ -1,5 +1,4 @@
 // Variables
-const token = "9e6e9521-9106-40d0-9d21-9c04c3b5398f";
 const urlParams = new URLSearchParams(window.location.search);
 const taskId = urlParams.get("id");
 const title = document.getElementById("title");
@@ -11,7 +10,7 @@ const departmentBox = document.getElementById("department-box");
 const departmentName = document.getElementById("department-name");
 const departmentFullName = document.getElementById("department-fullName");
 const dateBox = document.getElementById("date");
-const avatar = document.getElementById("avatar");
+const avatarPhoto = document.getElementById("avatarPhoto");
 const employeeName = document.getElementById("employeeName");
 const status = document.getElementById("status");
 let initialStatusId = null;
@@ -143,8 +142,8 @@ async function fetchTaskDetails() {
     departmentFullName.textContent = task.department.name;
     dateBox.textContent = formattedDate;
     employeeName.textContent = `${task.employee.name} ${task.employee.surname}`;
-    avatar.src = task.employee?.avatar || "../images/error/default-pfp.png";
-    avatar.onerror = function () {
+    avatarPhoto.src = task.employee?.avatar || "../images/error/default-pfp.png";
+    avatarPhoto.onerror = function () {
       this.onerror = null;
       this.src = "../images/error/default-pfp.png";
     };
