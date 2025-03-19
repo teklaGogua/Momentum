@@ -370,5 +370,5 @@ fetchData();
 
 // Open card page
 function openTask(taskId) {
-  window.location.href = `/pages/task-page.html?id=${taskId}`;
+  window.location.href = `pages/task-page.html?id=${taskId}`;
 }
