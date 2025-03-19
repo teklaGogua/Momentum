@@ -28,7 +28,7 @@ header {
     .employee {
       border: 1px solid $accentColor;
       background-color: #fff;
-      color: $navColor;
+      color: $subheading;
 
       &:hover {
         border: 1px solid $accentColorHover;
@@ -71,7 +71,7 @@ main {
         justify-content: space-between;
         width: 100%;
         padding: 1.25rem 1.8rem;
-        color: $filtrationColor;
+        color: $subheading;
         background-color: #fff;
         border-radius: 10px;
         border: none;
@@ -92,7 +92,7 @@ main {
         &-text {
           font-size: 1.6rem;
           font-weight: 400;
-          color: $filtrationColor;
+          color: $subheading;
         }
 
         img {
@@ -138,7 +138,7 @@ main {
             }
 
             &-text {
-              color: $navColor;
+              color: $subheading;
               font-size: 1.6rem;
               flex-shrink: 0;
             }

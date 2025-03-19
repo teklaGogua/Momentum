@@ -30,18 +30,20 @@ main {
           font-size: 3.4rem;
           margin-top: 1.2rem;
           margin-bottom: 3.6rem;
-          color: $navColor;
+          color: $subheading;
         }
 
         &-text {
           font-weight: 400;
           font-size: 1.8rem;
           line-height: 1.5;
+          color: $textColor;
         }
       }
 
       &-details {
         min-width: 49.3rem;
+        max-width: 50.1rem;
 
         &-title {
           color: #2a2a2a;
@@ -105,6 +107,135 @@ main {
                 font-size: 1.4rem;
                 font-weight: 300;
                 color: #0d0f10;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .comments {
+      background-color: #ddd2ff;
+      max-width: 74.1rem;
+      width: 100%;
+      margin-top: 5.9rem;
+      border-radius: 10px;
+      padding: 4rem 4.5rem 5.2rem;
+
+      &-add {
+        position: relative;
+        height: 13.5rem;
+        background-color: #fff;
+        border: 0.3px solid #adb5bd;
+        border-radius: 10px;
+        padding: 1.8rem 2rem 1.5rem;
+        margin-bottom: 6.6rem;
+
+        &-input {
+          width: 100%;
+          height: 5.5rem;
+          resize: none;
+          outline: none;
+          border: none;
+          border-radius: 10px;
+          font-size: 1.4rem;
+          color: #898989;
+        }
+
+        &-submit {
+          position: absolute;
+          bottom: 1.8rem;
+          right: 2rem;
+          background-color: $accentColor;
+          color: #fff;
+          border: none;
+          padding: 0.8rem 1.85rem;
+          border-radius: 20px;
+          font-size: 1.6rem;
+          font-weight: 400;
+          cursor: pointer;
+          transition: all 0.3s;
+
+          &:hover {
+            background-color: $accentColorHover;
+          }
+        }
+      }
+
+      &-section {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+
+        &-title {
+          font-size: 2rem;
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          gap: 0.7rem;
+
+          span {
+            font-size: 1.4rem;
+            border-radius: 30px;
+            padding: 0.25rem 1.1rem;
+            background-color: $accentColor;
+            color: #fff;
+          }
+        }
+
+        &-comment {
+          display: flex;
+          align-items: flex-start;
+          gap: 1.2rem;
+
+          &.reply {
+            margin: 2rem 0 2rem 5.3rem;
+          }
+
+          &-avatar {
+            width: 3.8rem;
+            height: 3.8rem;
+            border-radius: 50%;
+          }
+
+          &-content {
+            display: flex;
+            flex-direction: column;
+
+            &-name {
+              font-weight: 500;
+              font-size: 1.8rem;
+              margin-bottom: 0.8rem;
+              color: $subheading;
+            }
+
+            &-text {
+              color: $textColor;
+              font-size: 1.6rem;
+              margin-bottom: 1rem;
+            }
+
+            &-reply {
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              gap: 0.6rem;
+              width: fit-content;
+              transition: all 0.3s;
+
+              &-text {
+                font-size: 12px;
+                color: $accentColor;
+              }
+
+              &:hover {
+                .comments-section-comment-content-reply-text {
+                  color: $accentColorHover;
+                }
+
+                .comments-section-comment-content-reply-icon {
+                  fill: $accentColorHover;
+                }
               }
             }
           }

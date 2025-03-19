@@ -674,9 +674,11 @@ main .task-container .task-info-text {
   font-weight: 400;
   font-size: 1.8rem;
   line-height: 1.5;
+  color: #343A40;
 }
 main .task-container .task-details {
   min-width: 49.3rem;
+  max-width: 50.1rem;
 }
 main .task-container .task-details-title {
   color: #2a2a2a;
@@ -733,4 +735,114 @@ main .task-container .task-details-el-info select option {
   font-size: 1.4rem;
   font-weight: 300;
   color: #0d0f10;
+}
+main .task-container .comments {
+  background-color: #ddd2ff;
+  max-width: 74.1rem;
+  width: 100%;
+  margin-top: 5.9rem;
+  border-radius: 10px;
+  padding: 4rem 4.5rem 5.2rem;
+}
+main .task-container .comments-add {
+  position: relative;
+  height: 13.5rem;
+  background-color: #fff;
+  border: 0.3px solid #adb5bd;
+  border-radius: 10px;
+  padding: 1.8rem 2rem 1.5rem;
+  margin-bottom: 6.6rem;
+}
+main .task-container .comments-add-input {
+  width: 100%;
+  height: 5.5rem;
+  resize: none;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.4rem;
+  color: #898989;
+}
+main .task-container .comments-add-submit {
+  position: absolute;
+  bottom: 1.8rem;
+  right: 2rem;
+  background-color: #8338ec;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.85rem;
+  border-radius: 20px;
+  font-size: 1.6rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+main .task-container .comments-add-submit:hover {
+  background-color: #b588f4;
+}
+main .task-container .comments-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+main .task-container .comments-section-title {
+  font-size: 2rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+main .task-container .comments-section-title span {
+  font-size: 1.4rem;
+  border-radius: 30px;
+  padding: 0.25rem 1.1rem;
+  background-color: #8338ec;
+  color: #fff;
+}
+main .task-container .comments-section-comment {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+}
+main .task-container .comments-section-comment.reply {
+  margin: 2rem 0 2rem 5.3rem;
+}
+main .task-container .comments-section-comment-avatar {
+  width: 3.8rem;
+  height: 3.8rem;
+  border-radius: 50%;
+}
+main .task-container .comments-section-comment-content {
+  display: flex;
+  flex-direction: column;
+}
+main .task-container .comments-section-comment-content-name {
+  font-weight: 500;
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+  color: #212529;
+}
+main .task-container .comments-section-comment-content-text {
+  color: #343A40;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+main .task-container .comments-section-comment-content-reply {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  transition: all 0.3s;
+}
+main .task-container .comments-section-comment-content-reply-text {
+  font-size: 12px;
+  color: #8338ec;
+}
+main .task-container .comments-section-comment-content-reply:hover .comments-section-comment-content-reply-text {
+  color: #b588f4;
+}
+main .task-container .comments-section-comment-content-reply:hover .comments-section-comment-content-reply-icon {
+  fill: #b588f4;
 }/*# sourceMappingURL=global.css.map */

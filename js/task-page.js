@@ -13,6 +13,7 @@ const dateBox = document.getElementById("date");
 const avatarPhoto = document.getElementById("avatarPhoto");
 const employeeName = document.getElementById("employeeName");
 const status = document.getElementById("status");
+const commentsSection = document.querySelector(".comments-section");
 let initialStatusId = null;
 
 const departments = {
@@ -142,7 +143,8 @@ async function fetchTaskDetails() {
     departmentFullName.textContent = task.department.name;
     dateBox.textContent = formattedDate;
     employeeName.textContent = `${task.employee.name} ${task.employee.surname}`;
-    avatarPhoto.src = task.employee?.avatar || "../images/error/default-pfp.png";
+    avatarPhoto.src =
+      task.employee?.avatar || "../images/error/default-pfp.png";
     avatarPhoto.onerror = function () {
       this.onerror = null;
       this.src = "../images/error/default-pfp.png";
@@ -156,3 +158,108 @@ async function fetchTaskDetails() {
   }
 }
 fetchTaskDetails();
+
+// Get Comments
+async function fetchComments() {
+  try {
+    const res = await fetch(
+      `https://momentum.redberryinternship.ge/api/tasks/${taskId}/comments`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
+      }
+    );
+
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+
+    const comments = await res.json();
+    console.log(comments);
+    let commentsHTML = `<h3 class="comments-section-title">
+                  კომენტარები <span id="comments-count">${comments.length}</span>
+              </h3>`;
+
+    comments.forEach((comment) => {
+      let subCommentsHTML = "";
+
+      if (comment.sub_comments.length !== 0) {
+        subCommentsHTML = comment.sub_comments
+          .map(
+            (subComment) => `
+          <div class="comments-section-comment reply">
+            <img
+              src="${subComment.author_avatar}"
+              alt="User Avatar"
+              class="comments-section-comment-avatar"
+            />
+            <div class="comments-section-comment-content">
+              <p class="comments-section-comment-content-name">
+                ${subComment.author_nickname}
+              </p>
+              <p class="comments-section-comment-content-text">
+                ${subComment.text}
+              </p>
+            </div>
+          </div>`
+          )
+          .join(""); // Converts array to a string
+      }
+
+      commentsHTML += `
+            <div class="comments-container">
+              <div class="comments-section-comment">
+                <img
+                  src="${comment.author_avatar}"
+                  alt="User Avatar"
+                  class="comments-section-comment-avatar"
+                />
+                <div class="comments-section-comment-content">
+                  <p class="comments-section-comment-content-name">
+                    ${comment.author_nickname}
+                  </p>
+                  <p class="comments-section-comment-content-text">
+                    ${comment.text}
+                  </p>
+                  <div class="comments-section-comment-content-reply">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g clip-path="url(#clip0_4157_1772)">
+                        <path
+                          class="comments-section-comment-content-reply-icon"
+                          d="M16.0007 13.9993H14.6673V11.9993C14.6673 8.66602 12.0007 5.99935 8.66732 5.99935H5.33398V4.66602H8.66732C12.734 4.66602 16.0007 7.93268 16.0007 11.9993V13.9993Z"
+                          fill="#8338EC"
+                        />
+                        <path
+                          class="comments-section-comment-content-reply-icon"
+                          d="M2 5.33333L5.33333 8.66667V2L2 5.33333Z"
+                          fill="#8338EC"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_4157_1772">
+                          <rect width="16" height="16" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                    <p class="comments-section-comment-content-reply-text">
+                      პასუხი
+                    </p>
+                  </div>
+                </div>
+              </div>
+              ${subCommentsHTML}
+            </div>
+            `;
+    });
+    commentsSection.innerHTML = commentsHTML;
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+fetchComments();
