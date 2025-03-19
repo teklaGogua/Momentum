@@ -14,6 +14,8 @@ const avatarPhoto = document.getElementById("avatarPhoto");
 const employeeName = document.getElementById("employeeName");
 const status = document.getElementById("status");
 const commentsSection = document.querySelector(".comments-section");
+const addComment = document.getElementById("addComment");
+const submitComment = document.getElementById("submitComment");
 let initialStatusId = null;
 
 const departments = {
@@ -175,7 +177,6 @@ async function fetchComments() {
     if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 
     const comments = await res.json();
-    console.log(comments);
     let commentsHTML = `<h3 class="comments-section-title">
                   კომენტარები <span id="comments-count">${comments.length}</span>
               </h3>`;
@@ -203,7 +204,7 @@ async function fetchComments() {
             </div>
           </div>`
           )
-          .join(""); // Converts array to a string
+          .join("");
       }
 
       commentsHTML += `
@@ -221,7 +222,7 @@ async function fetchComments() {
                   <p class="comments-section-comment-content-text">
                     ${comment.text}
                   </p>
-                  <div class="comments-section-comment-content-reply">
+                  <div class="comments-section-comment-content-reply" data-comment-id="${comment.id}">
                     <svg
                       width="16"
                       height="16"
@@ -258,8 +259,96 @@ async function fetchComments() {
             `;
     });
     commentsSection.innerHTML = commentsHTML;
+    const replyButtons = document.querySelectorAll(
+      ".comments-section-comment-content-reply"
+    );
+    replyButtons.forEach((btn) =>
+      btn.addEventListener("click", handleReplyClick)
+    );
   } catch (error) {
     console.error("Error:", error);
   }
 }
 fetchComments();
+
+// Post comments
+async function postComments() {
+  const commentText = addComment.value;
+  console.log(commentText);
+
+  if (commentText) {
+    try {
+      const res = await fetch(
+        `https://momentum.redberryinternship.ge/api/tasks/${taskId}/comments`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            text: commentText,
+          }),
+        }
+      );
+
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+
+      window.location.reload();
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+}
+submitComment.addEventListener("click", (e) => {
+  e.preventDefault();
+  postComments();
+});
+
+// Handle sub-comments
+function handleReplyClick(e) {
+  const replyBtn = e.currentTarget;
+  const commentId = replyBtn.dataset.commentId;
+  const commentContent = replyBtn.closest(".comments-section-comment-content");
+
+  document.querySelectorAll(".reply-form").forEach((form) => form.remove());
+  const form = document.createElement("div");
+  form.className = "reply-form";
+
+  form.innerHTML = `
+    <div class="comments-add comments-subcomments">
+      <textarea class="comments-add-input" placeholder="დაამატე პასუხი"></textarea>
+      <button class="comments-add-submit reply-submit">პასუხის გაგზავნა</button>
+    </div>
+      `;
+
+  commentContent.appendChild(form);
+
+  form.querySelector(".reply-submit").addEventListener("click", async (e) => {
+    e.preventDefault();
+    const text = form.querySelector("textarea").value.trim();
+    if (text) {
+      try {
+        await fetch(
+          `https://momentum.redberryinternship.ge/api/tasks/${taskId}/comments`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              text: text,
+              parent_id: commentId,
+            }),
+          }
+        );
+        window.location.reload();
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+  });
+}
+

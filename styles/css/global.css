@@ -780,6 +780,10 @@ main .task-container .comments-add-submit {
 main .task-container .comments-add-submit:hover {
   background-color: #b588f4;
 }
+main .task-container .comments-subcomments {
+  margin: 1rem 0;
+  min-width: 60rem;
+}
 main .task-container .comments-section {
   display: flex;
   flex-direction: column;

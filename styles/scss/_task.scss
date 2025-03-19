@@ -162,6 +162,11 @@ main {
         }
       }
 
+      &-subcomments {
+        margin: 1rem 0;
+        min-width: 60rem;
+      }
+
       &-section {
         display: flex;
         flex-direction: column;
