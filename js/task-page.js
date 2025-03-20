@@ -16,6 +16,7 @@ const status = document.getElementById("status");
 const commentsSection = document.querySelector(".comments-section");
 const addComment = document.getElementById("addComment");
 const submitComment = document.getElementById("submitComment");
+const addTask = document.querySelector(".task");
 let initialStatusId = null;
 
 const departments = {
@@ -50,16 +51,16 @@ async function fetchStatus(id) {
     if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 
     const statuses = await res.json();
-    let departmentModalHTML = "";
+    let statusModalHTML = "";
     statuses.forEach((status) => {
       if (status.id === id) {
-        departmentModalHTML += `<option value="${status.id}" selected>${status.name}</option>`;
+        statusModalHTML += `<option value="${status.id}" selected>${status.name}</option>`;
       } else {
-        departmentModalHTML += `<option value="${status.id}">${status.name}</option>`;
+        statusModalHTML += `<option value="${status.id}">${status.name}</option>`;
       }
     });
 
-    status.innerHTML = departmentModalHTML;
+    status.innerHTML = statusModalHTML;
   } catch (error) {
     console.error("Error:", error);
   }
@@ -352,3 +353,7 @@ function handleReplyClick(e) {
   });
 }
 
+// Open Add task page
+addTask.addEventListener("click", () => {
+  window.location.href = `task-add.html`;
+});

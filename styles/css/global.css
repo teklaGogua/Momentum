@@ -185,6 +185,10 @@ body {
   display: flex !important;
 }
 
+.disabled {
+  color: #adb5bd !important;
+}
+
 .modal-overlay {
   display: none;
   position: fixed;
@@ -508,31 +512,31 @@ main .tasks {
   gap: 5.2rem;
 }
 main .tasks .starter .tasks-el-boxTitle {
-  background-color: #F7BC30;
+  background-color: #f7bc30;
 }
 main .tasks .starter .tasks-el-box-card {
-  border: 1px #F7BC30 solid;
+  border: 1px #f7bc30 solid;
   border-radius: 15px;
 }
 main .tasks .inProgress .tasks-el-boxTitle {
-  background-color: #FB5607;
+  background-color: #fb5607;
 }
 main .tasks .inProgress .tasks-el-box-card {
-  border: 1px #FB5607 solid;
+  border: 1px #fb5607 solid;
   border-radius: 15px;
 }
 main .tasks .testing .tasks-el-boxTitle {
-  background-color: #FF006E;
+  background-color: #ff006e;
 }
 main .tasks .testing .tasks-el-box-card {
-  border: 1px #FF006E solid;
+  border: 1px #ff006e solid;
   border-radius: 15px;
 }
 main .tasks .finished .tasks-el-boxTitle {
-  background-color: #3A86FF;
+  background-color: #3a86ff;
 }
 main .tasks .finished .tasks-el-box-card {
-  border: 1px #3A86FF solid;
+  border: 1px #3a86ff solid;
   border-radius: 15px;
 }
 main .tasks-el {
@@ -562,7 +566,7 @@ main .tasks-el-box-card {
   padding: 2rem;
   height: 24.1rem;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  color: #343A40;
+  color: #343a40;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -584,7 +588,7 @@ main .tasks-el-box-card-header-tags {
 main .tasks-el-box-card-header-tags-priority {
   display: flex;
   align-items: center;
-  border: 0.5px #343A40 solid;
+  border: 0.5px #343a40 solid;
   width: 8.6rem;
   height: 2.6rem;
   border-radius: 5px;
@@ -674,7 +678,7 @@ main .task-container .task-info-text {
   font-weight: 400;
   font-size: 1.8rem;
   line-height: 1.5;
-  color: #343A40;
+  color: #343a40;
 }
 main .task-container .task-details {
   min-width: 49.3rem;
@@ -827,7 +831,7 @@ main .task-container .comments-section-comment-content-name {
   color: #212529;
 }
 main .task-container .comments-section-comment-content-text {
-  color: #343A40;
+  color: #343a40;
   font-size: 1.6rem;
   margin-bottom: 1rem;
 }
@@ -851,80 +855,84 @@ main .task-container .comments-section-comment-content-reply:hover .comments-sec
   fill: #b588f4;
 }
 
-main .container {
-  background-color: #DDD2FF;
+main .addTask-container {
+  /* Task Form */
 }
-
-.task-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+main .addTask-container h2 {
+  font-size: 3.4rem;
+  font-weight: 600;
 }
-
-/* Task Form */
-.task-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* Form Group (Each Input/Select Group) */
-.task-form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-/* Labels */
-.task-form-label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #333333;
-}
-
-/* Input Fields */
-.task-form-input,
-.task-form-select,
-.task-form-textarea {
-  padding: 10px;
-  border: 1px solid #cccccc;
+main .addTask-container-form {
+  background-color: #ddd2ff;
+  width: 100%;
   border-radius: 4px;
-  font-size: 14px;
-  color: #333333;
-  background-color: #f9f9f9;
-  transition: border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 5.5rem;
+  padding: 6.5rem 0 0 5.5rem;
+  margin-top: 2.5rem;
 }
-
-.task-form-input:focus,
-.task-form-select:focus,
-.task-form-textarea:focus {
-  border-color: #007bff;
+main .addTask-container-form-row {
+  display: flex;
+  width: 126.1rem;
+  gap: 16.1rem;
+}
+main .addTask-container-form-row-col {
+  display: flex;
+  gap: 3.2rem;
+  width: 100%;
+}
+main .addTask-container-form-row-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+}
+main .addTask-container-form-row-group #taskDeadline {
+  max-width: 31.8rem;
+}
+main .addTask-container-form-row-group-lable {
+  color: #212529;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+main .addTask-container-form-row-group-input, main .addTask-container-form-row-group-select, main .addTask-container-form-row-group-textarea {
+  padding: 1.4rem;
+  font-size: 1.4rem;
+  font-weight: 300;
+  border: 1px solid rgb(222, 226, 230);
+  border-radius: 5px;
+}
+main .addTask-container-form-row-group-input:focus, main .addTask-container-form-row-group-select:focus, main .addTask-container-form-row-group-textarea:focus {
+  border-color: #b588f4;
   outline: none;
 }
-
-.task-form-textarea {
-  resize: vertical;
-  min-height: 100px;
+main .addTask-container-form-row-group-textarea {
+  height: 13.3rem;
+  resize: none;
 }
-
-/* Select Dropdown */
-.task-form-select {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  background-image: url("../images/icons/dropdown-arrow.svg"); /* Add a dropdown arrow icon */
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 12px;
+main .addTask-container-form-btnBox {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10rem 0;
+  width: 100%;
+}
+main .addTask-container-form-btnBox button {
+  font-size: 1.8rem;
+  color: #fff;
+  background-color: #8338ec;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+main .addTask-container-form-btnBox button:hover {
+  background-color: #b588f4;
 }
 
 /* Form Buttons */
 .task-form-buttons {
-  display: flex;
-  justify-content: flex-end;
   gap: 10px;
   margin-top: 20px;
 }

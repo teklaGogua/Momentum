@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Momentum</title>
+
+    <link rel="stylesheet" href="../styles/css/global.css" />
+  </head>
+  <body>
+    <div class="modal-overlay">
+      <dialog class="modal">
+        <img
+          src="../images/icons/cancel.svg"
+          alt="Cancel Btn"
+          id="cancelBtn"
+          class="cancel"
+        />
+        <div class="modal-header">
+          <h2 class="modal-header-title">თანამშრომლის დამატება</h2>
+        </div>
+        <form class="modal-form">
+          <div class="modal-form-row">
+            <div class="modal-form-row-col">
+              <label class="modal-form-row-col-lable">სახელი*</label>
+              <input
+                type="text"
+                class="modal-form-row-col-input"
+                id="name"
+                required
+              />
+            </div>
+            <div class="modal-form-row-col">
+              <label class="modal-form-row-col-lable">გვარი*</label>
+              <input
+                type="text"
+                class="modal-form-row-col-input"
+                id="surname"
+                required
+              />
+            </div>
+          </div>
+          <div class="modal-form-col">
+            <p class="modal-form-row-col-lable">ავატარი*</p>
+            <div class="modal-form-row-col-imgBoX" id="custom-upload">
+              <div class="modal-form-row-col-imgBoX-upload active-flex">
+                <img
+                  src="../images/icons/uploadImg.svg"
+                  alt="Upload img icon"
+                  class="modal-form-row-col-imgBoX-upload-img"
+                />
+                <p class="modal-form-row-col-imgBoX-upload-ext">ატვირთე ფოტო</p>
+                <input
+                  type="file"
+                  id="profile-pic"
+                  name="profile-pic"
+                  accept="image/*"
+                  required
+                  style="display: none"
+                />
+              </div>
+              <div class="modal-form-row-col-imgBoX-avatar">
+                <img
+                  src=""
+                  id="avatar"
+                  alt="avatar"
+                  class="modal-form-row-col-imgBoX-avatar-img"
+                />
+                <img
+                  src="../images/icons/trash.svg"
+                  alt="delete img icon"
+                  class="modal-form-row-col-imgBoX-avatar-delete"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="modal-form-col" id="departmentBox">
+            <label class="modal-form-row-col-lable">დეპარტამენტი*</label>
+            <select
+              class="modal-form-row-col-input"
+              id="department"
+              name="department"
+              required
+            ></select>
+          </div>
+          <div class="modal-form-row btn-box">
+            <button class="modal-form-row-col-btn cancel" id="cancel">
+              გაუქმება
+            </button>
+            <button
+              type="submit"
+              class="modal-form-row-col-btn"
+              id="addEmployee"
+            >
+              დაამატე თანამშრომელი
+            </button>
+          </div>
+        </form>
+      </dialog>
+    </div>
+
+    <header>
+      <div class="right-side">
+        <img
+          src="../images/mainLogo.svg"
+          alt="Main Logo"
+          class="right-side-logo"
+        />
+      </div>
+      <nav class="left-side">
+        <button class="left-side-btn employee">თანამშრომლის შექმნა</button>
+        <button class="left-side-btn task" disabled>
+          + შექმენი ახალი დავალება
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <div class="addTask-container">
+        <h2>შექმენი ახალი დავალება</h2>
+        <form class="addTask-container-form">
+          <div class="addTask-container-form-row">
+            <div class="addTask-container-form-row-group">
+              <label
+                for="taskTitle"
+                class="addTask-container-form-row-group-lable"
+                >სათაური*</label
+              >
+              <input
+                type="text"
+                id="taskTitle"
+                class="addTask-container-form-row-group-input"
+                placeholder="შეიყვანეთ დავალების სახელი"
+                required
+              />
+            </div>
+            <div class="addTask-container-form-row-group">
+              <label
+                for="taskDepartment"
+                class="addTask-container-form-row-group-lable"
+                >დეპარტამენტი*</label
+              >
+              <select
+                id="taskDepartment"
+                class="addTask-container-form-row-group-select"
+                required
+              ></select>
+            </div>
+          </div>
+          <div class="addTask-container-form-row">
+            <div class="addTask-container-form-row-group">
+              <label
+                for="taskDescription"
+                class="addTask-container-form-row-group-lable"
+                >აღწერა</label
+              >
+              <textarea
+                id="taskDescription"
+                class="addTask-container-form-row-group-textarea"
+                placeholder="შეიყვანეთ დავალების აღწერა"
+                rows="4"
+              ></textarea>
+            </div>
+            <div class="addTask-container-form-row-group">
+              <label
+                for="taskEmployee"
+                id="employee-label"
+                class="addTask-container-form-row-group-lable disabled"
+                >პასუხისმგებელი თანამშრომელი*</label
+              >
+              <select
+                id="taskEmployee"
+                class="addTask-container-form-row-group-select"
+                required
+                disabled
+              ></select>
+            </div>
+          </div>
+          <div class="addTask-container-form-row">
+            <div class="addTask-container-form-row-col">
+              <div class="addTask-container-form-row-group">
+                <label
+                  for="taskPriority"
+                  class="addTask-container-form-row-group-lable"
+                  >პრიორიტეტი*</label
+                >
+                <select
+                  id="taskPriority"
+                  class="addTask-container-form-row-group-select"
+                  required
+                ></select>
+              </div>
+
+              <div class="addTask-container-form-row-group">
+                <label
+                  for="taskStatus"
+                  class="addTask-container-form-row-group-lable"
+                  >სტატუსი*</label
+                >
+                <select
+                  id="taskStatus"
+                  class="addTask-container-form-row-group-select"
+                  required
+                ></select>
+              </div>
+            </div>
+            <div class="addTask-container-form-row-group">
+              <label
+                for="taskDeadline"
+                class="addTask-container-form-row-group-lable"
+                >დედლაინი*</label
+              >
+              <input
+                type="date"
+                id="taskDeadline"
+                class="addTask-container-form-row-group-input"
+                required
+              />
+            </div>
+          </div>
+          <div class="addTask-container-form-row">
+            <div class="addTask-container-form-btnBox">
+              <button id="add-task-btn">დავალების შექმნა</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script src="../js/modal.js"></script>
+    <script src="../js/task-add.js"></script>
+  </body>
+</html>

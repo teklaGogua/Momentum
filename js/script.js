@@ -4,6 +4,7 @@ let previouslyClickedBtn = null;
 const checkBox = document.querySelectorAll(".filtration-el-dropdown-options");
 const departmentsContainer = document.getElementById("departments-container");
 const employeesContainer = document.getElementById("employees-container");
+const addTask = document.querySelector(".task");
 
 const georgianMonths = [
   "იან",
@@ -302,7 +303,7 @@ async function fetchData() {
       const date = new Date(task.due_date);
 
       const day = date.getUTCDate();
-      const month = date.getUTCMonth() + 1;
+      const month = date.getUTCMonth();
       const year = date.getUTCFullYear();
 
       const monthName = georgianMonths[month];
@@ -354,6 +355,7 @@ async function fetchData() {
 
       if (!statusHTML[statusId]) statusHTML[statusId] = [];
       statusHTML[statusId].push(taskHTML);
+      console.log(task);
     });
 
     Object.keys(statusHTML).forEach((statusId) => {
@@ -368,7 +370,12 @@ async function fetchData() {
 }
 fetchData();
 
-// Open card page
+// Open task page
 function openTask(taskId) {
   window.location.href = `pages/task-page.html?id=${taskId}`;
 }
+
+// Open Add task page
+addTask.addEventListener("click", () => {
+  window.location.href = `pages/task-add.html`;
+});

@@ -134,8 +134,6 @@ async function addEmployees() {
   formData.append("surname", surname);
   formData.append("avatar", avatar);
   formData.append("department_id", department_id);
-  console.log(...formData);
-  console.log(name, surname, department_id, avatar);
 
   if (!name || !surname || !department_id || !avatar) {
     return;

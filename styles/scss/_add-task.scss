@@ -1,0 +1,125 @@
+main {
+  .addTask-container {
+    h2 {
+      @include main-title;
+    }
+
+    /* Task Form */
+    &-form {
+      background-color: $accentColorLight;
+      width: 100%;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 5.5rem;
+      padding: 6.5rem 0 0 5.5rem;
+      margin-top: 2.5rem;
+
+      &-row {
+        display: flex;
+        width: 126.1rem;
+        gap: 16.1rem;
+
+        &-col {
+          display: flex;
+          gap: 3.2rem;
+          width: 100%;
+        }
+
+        &-group {
+          display: flex;
+          flex-direction: column;
+          gap: 0.6rem;
+          width: 100%;
+
+          #taskDeadline {
+            max-width: 31.8rem;
+          }
+
+          &-lable {
+            color: $subheading;
+            font-size: 1.6rem;
+            font-weight: 400;
+          }
+
+          &-input,
+          &-select,
+          &-textarea {
+            padding: 1.4rem;
+            font-size: 1.4rem;
+            font-weight: 300;
+            border: 1px solid rgba(222, 226, 230, 1);
+            border-radius: 5px;
+
+            &:focus {
+              border-color: $accentColorHover;
+              outline: none;
+            }
+          }
+
+          &-textarea {
+            height: 13.3rem;
+            resize: none;
+          }
+        }
+      }
+
+      &-btnBox {
+        display: flex;
+        justify-content: flex-end;
+        margin: 10rem 0;
+        width: 100%;
+
+        button {
+          font-size: 1.8rem;
+          color: #fff;
+          background-color: $accentColor;
+          padding: 1rem 2rem;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: all 0.3s;
+
+          &:hover {
+            background-color: $accentColorHover;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Form Buttons */
+.task-form-buttons {
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.task-form-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.task-form-button.cancel {
+  background-color: #f8f9fa;
+  color: #333333;
+  border: 1px solid #cccccc;
+}
+
+.task-form-button.cancel:hover {
+  background-color: #e9ecef;
+}
+
+.task-form-button.submit {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.task-form-button.submit:hover {
+  background-color: #0056b3;
+}

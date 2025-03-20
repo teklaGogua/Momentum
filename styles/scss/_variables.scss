@@ -1,18 +1,19 @@
 // Colors
 $accentColor: #8338ec;
 $accentColorHover: #b588f4;
-$accentColorLight: #DDD2FF;
-$textColor: #343A40;
+$accentColorLight: #ddd2ff;
+$textColor: #343a40;
 $subheading: #212529;
 $borderColor: #dee2e6;
-$inputColor: #CED4DA;
-$mainYellow: #F7BC30;
-$secondaryYellow: #FFD86D;
-$mainOrange: #FB5607;
-$mainPink: #FF006E;
-$mainBlue: #3A86FF;
-$mainRed: #FA4D4D;
-$mainGreen: #08A508;
+$inputColor: #ced4da;
+$mainYellow: #f7bc30;
+$secondaryYellow: #ffd86d;
+$mainOrange: #fb5607;
+$mainPink: #ff006e;
+$mainBlue: #3a86ff;
+$mainRed: #fa4d4d;
+$mainGreen: #08a508;
+$disabled: #adb5bd;
 
 // fonts
 @font-face {
@@ -59,7 +60,11 @@ $mainGreen: #08A508;
   display: flex !important;
 }
 
-// Mixins 
+.disabled {
+  color: $disabled !important;
+}
+
+// Mixins
 @mixin main-title {
   font-size: 3.4rem;
   font-weight: 600;
