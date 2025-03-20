@@ -3,6 +3,7 @@ const filtrationBtns = document.querySelectorAll(".filtration-el-btn");
 let previouslyClickedBtn = null;
 const checkBox = document.querySelectorAll(".filtration-el-dropdown-options");
 const departmentsContainer = document.getElementById("departments-container");
+const priorityContainer = document.getElementById("priority-container");
 const employeesContainer = document.getElementById("employees-container");
 const addTask = document.querySelector(".task");
 
@@ -120,6 +121,81 @@ async function fetchDepartments() {
   }
 }
 fetchDepartments();
+
+// GetPriorities
+async function fetchPriorities() {
+  try {
+    const res = await fetch(
+      `https://momentum.redberryinternship.ge/api/priorities`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
+      }
+    );
+
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+
+    const priorities = await res.json();
+    let priorityHTML = "";
+    priorities.forEach((priority) => {
+      priorityHTML += `  <div class="filtration-el-dropdown-options-el">
+                <div class="icon-for-marking">
+                  <svg
+                    class="filtration-el-dropdown-options-el-checked"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="0.75"
+                      y="0.75"
+                      width="20.5"
+                      height="20.5"
+                      rx="5.25"
+                      stroke="#8338EC"
+                      stroke-width="1.5"
+                    />
+                    <path
+                      d="M16.3334 7.33325L9.00008 14.6666L5.66675 11.3333"
+                      stroke="#8338EC"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <svg
+                    class="filtration-el-dropdown-options-el-empty active"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="0.75"
+                      y="0.75"
+                      width="20.5"
+                      height="20.5"
+                      rx="5.25"
+                      stroke="#8338EC"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                </div>
+                <p class="filtration-el-dropdown-options-el-text">${priority.name}</p>
+              </div>`;
+    });
+
+    priorityContainer.innerHTML = priorityHTML;
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+fetchPriorities();
 
 // Get all employees
 async function fetchEmployees() {
@@ -243,6 +319,31 @@ filtrationBtns.forEach((btn) => {
       prevText.style.color = "rgb(33, 37, 41)";
     }
     previouslyClickedBtn = btn;
+
+    const closeOnOutsideClick = (e) => {
+      e.preventDefault();
+      const excludedElements = document.querySelectorAll(
+        ".filtration-el-dropdown"
+      );
+      let isExcluded = false;
+
+      for (const el of excludedElements) {
+        if (el.contains(e.target)) {
+          isExcluded = true;
+          break;
+        }
+      }
+
+      if (!btn.contains(e.target) && !isExcluded) {
+        dropdown.classList.remove("active");
+        arrowUp.classList.remove("active");
+        arrowDown.classList.add("active");
+        text.style.color = "rgb(33, 37, 41)";
+        previouslyClickedBtn = null;
+        document.removeEventListener("click", closeOnOutsideClick);
+      }
+    };
+    document.addEventListener("click", closeOnOutsideClick);
   });
 });
 
@@ -355,7 +456,6 @@ async function fetchData() {
 
       if (!statusHTML[statusId]) statusHTML[statusId] = [];
       statusHTML[statusId].push(taskHTML);
-      console.log(task);
     });
 
     Object.keys(statusHTML).forEach((statusId) => {
