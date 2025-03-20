@@ -42,6 +42,10 @@ cancelBtns.forEach((btn) => {
     e.preventDefault();
     dialog.close();
     modalOverlay.classList.remove("active");
+    form.reset();
+    uploadContant.classList.add("active-flex"); 
+    avatarBox.classList.remove("active"); 
+    fileInput.disabled = false; 
   });
 });
 
@@ -56,16 +60,22 @@ dialog.addEventListener("click", (e) => {
   ) {
     dialog.close();
     modalOverlay.classList.remove("active");
+    form.reset();
+    uploadContant.classList.add("active-flex"); 
+    avatarBox.classList.remove("active");
+    fileInput.disabled = false; 
   }
 });
 
 // When div is clicked, trigger file input click
-uploadBox.addEventListener("click", function () {
+uploadBox.addEventListener("click", function (e) {
+  e.stopPropagation();
   fileInput.click();
 });
 
 // Show a preview of the selected image
 fileInput.addEventListener("change", function (event) {
+  event.stopPropagation();
   avatar = event.target.files[0];
   if (avatar) {
     if (avatar.size > 600 * 1024) {
@@ -87,7 +97,8 @@ fileInput.addEventListener("change", function (event) {
 });
 
 // Delete selected Img
-deleteImg.addEventListener("click", () => {
+deleteImg.addEventListener("click", (e) => {
+  e.stopPropagation();
   uploadContant.classList.add("active-flex");
   avatarBox.classList.remove("active");
   fileInput.disabled = false;
