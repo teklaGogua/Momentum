@@ -412,10 +412,12 @@ async function fetchData() {
 
       // Description
       let description = "";
-      if (task.description.length <= 100) {
-        description = task.description;
-      } else {
-        description = task.description.substring(0, 100) + "...";
+      if (task.description) {
+        if (task.description.length <= 100) {
+          description = task.description;
+        } else {
+          description = task.description.substring(0, 100) + "...";
+        }
       }
 
       taskHTML = `<div class="tasks-el-box-card" onclick="openTask(${task.id})">
