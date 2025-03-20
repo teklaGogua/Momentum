@@ -74,8 +74,9 @@ async function fetchPriorities() {
     const priorities = await res.json();
     let priorityHTML = "";
     const formData = JSON.parse(localStorage.getItem("formData"));
+    const savedPriority = formData?.taskPriority || 2;
     priorities.forEach((priority) => {
-      if (priority.id === parseInt(formData.taskPriority)) {
+      if (priority.id === parseInt(savedPriority)) {
         priorityHTML += `<option value="${priority.id}" selected>${priority.name}</option>`;
       } else {
         priorityHTML += `<option value="${priority.id}">${priority.name}</option>`;
@@ -107,8 +108,9 @@ async function fetchStatuses() {
     const statuses = await res.json();
     let statusHTML = "";
     const formData = JSON.parse(localStorage.getItem("formData"));
+    const savedStatus = formData?.taskStatus || 1;
     statuses.forEach((status) => {
-      if (status.id === parseInt(formData.taskStatus)) {
+      if (status.id === parseInt(parseInt(savedStatus))) {
         statusHTML += `<option value="${status.id}" selected>${status.name}</option>`;
       } else {
         statusHTML += `<option value="${status.id}">${status.name}</option>`;
@@ -139,15 +141,15 @@ async function fetchDepartments() {
 
     const departments = await res.json();
     const formData = JSON.parse(localStorage.getItem("formData"));
-    let selected = true;
     let departmentHTML = "";
-    if (formData.taskDepartment === "") {
+    const savedDepartment = formData?.taskDepartment || "";
+
+    if (!savedDepartment) {
       departmentHTML = `<option value="" disabled selected>აირჩიეთ სტატუსი</option>`;
-    } else {
-      selected = false;
     }
+
     departments.forEach((department) => {
-      if (!selected && department.id === parseInt(formData.taskDepartment)) {
+      if (department.id === parseInt(savedDepartment)) {
         departmentHTML += `<option value="${department.id}" selected>${department.name}</option>`;
       } else {
         departmentHTML += `<option value="${department.id}">${department.name}</option>`;
@@ -164,7 +166,10 @@ fetchDepartments();
 // Get Employees
 async function fetchEmployees() {
   const formData = JSON.parse(localStorage.getItem("formData"));
-  if (formData.taskDepartment) {
+  const savedDepartment = formData?.taskDepartment;
+  const savedEmployee = formData?.taskEmployee;
+
+  if (savedDepartment) {
     try {
       const res = await fetch(
         `https://momentum.redberryinternship.ge/api/employees`,
@@ -183,8 +188,12 @@ async function fetchEmployees() {
       employeeLabel.classList.remove("disabled");
       let employeeHTML = `<option value="" disabled selected>აირჩიეთ თანამშრომელი</option>`;
       employees.forEach((employee) => {
-        if (employee.department.id === parseInt(formData.taskDepartment)) {
-          employeeHTML += `<option value="${employee.id}">${employee.name} ${employee.surname}</option>`;
+        if (employee.department.id === parseInt(savedDepartment)) {
+          if (employee.id === parseInt(savedEmployee)) {
+            employeeHTML += `<option value="${employee.id}" selected>${employee.name} ${employee.surname}</option>`;
+          } else {
+            employeeHTML += `<option value="${employee.id}">${employee.name} ${employee.surname}</option>`;
+          }
         }
       });
 
