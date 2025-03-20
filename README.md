@@ -1,4 +1,4 @@
-# Momentum
+# Momentum - Progress Tracking Software
 
 ## Table of contents
 
