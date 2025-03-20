@@ -43,9 +43,11 @@ cancelBtns.forEach((btn) => {
     dialog.close();
     modalOverlay.classList.remove("active");
     form.reset();
-    uploadContant.classList.add("active-flex"); 
-    avatarBox.classList.remove("active"); 
-    fileInput.disabled = false; 
+    uploadContant.classList.add("active-flex");
+    avatarBox.classList.remove("active");
+    fileInput.disabled = false;
+    avatarImg.src = "";
+    avatar = null;
   });
 });
 
@@ -61,9 +63,11 @@ dialog.addEventListener("click", (e) => {
     dialog.close();
     modalOverlay.classList.remove("active");
     form.reset();
-    uploadContant.classList.add("active-flex"); 
+    uploadContant.classList.add("active-flex");
     avatarBox.classList.remove("active");
-    fileInput.disabled = false; 
+    fileInput.disabled = false;
+    avatarImg.src = "";
+    avatar = null;
   }
 });
 
@@ -174,6 +178,8 @@ async function addEmployees() {
     uploadContant.classList.add("active-flex");
     avatarBox.classList.remove("active");
     fileInput.disabled = false;
+    avatarImg.src = "";
+    avatar = null;
 
     window.location.reload();
   } catch (error) {
