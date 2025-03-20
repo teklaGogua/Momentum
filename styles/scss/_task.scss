@@ -26,8 +26,7 @@ main {
         }
 
         &-title {
-          font-weight: 600;
-          font-size: 3.4rem;
+          @include main-title;
           margin-top: 1.2rem;
           margin-bottom: 3.6rem;
           color: $subheading;

@@ -1,0 +1,43 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: 3rem 12rem;
+
+  .left-side {
+    display: flex;
+    gap: 4rem;
+
+    &-btn {
+      padding: 1rem 2rem;
+      font-size: 1.6rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .employee {
+      border: 1px solid $accentColor;
+      background-color: #fff;
+      color: $subheading;
+
+      &:hover {
+        border: 1px solid $accentColorHover;
+      }
+    }
+
+    .task {
+      border: none;
+      background-color: $accentColor;
+      color: #fff;
+
+      &:hover {
+        background-color: $accentColorHover;
+      }
+    }
+  }
+}

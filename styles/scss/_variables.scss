@@ -1,6 +1,7 @@
 // Colors
 $accentColor: #8338ec;
 $accentColorHover: #b588f4;
+$accentColorLight: #DDD2FF;
 $textColor: #343A40;
 $subheading: #212529;
 $borderColor: #dee2e6;
@@ -56,4 +57,10 @@ $mainGreen: #08A508;
 
 .active-flex {
   display: flex !important;
+}
+
+// Mixins 
+@mixin main-title {
+  font-size: 3.4rem;
+  font-weight: 600;
 }
