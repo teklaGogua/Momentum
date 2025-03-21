@@ -877,7 +877,7 @@ main .addTask-container h2 {
   font-weight: 600;
 }
 main .addTask-container-form {
-  background-color: #ddd2ff;
+  background-color: rgba(251, 249, 255, 0.65);
   width: 100%;
   border-radius: 4px;
   display: flex;
@@ -924,6 +924,11 @@ main .addTask-container-form-row-group-input:focus, main .addTask-container-form
 main .addTask-container-form-row-group-textarea {
   height: 13.3rem;
   resize: none;
+}
+main .addTask-container-form-row-group p {
+  color: rgba(67, 255, 100, 0.8509803922);
+  margin-bottom: 0.2rem;
+  font-weight: 300;
 }
 main .addTask-container-form-btnBox {
   display: flex;

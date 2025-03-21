@@ -8,6 +8,60 @@ const addTaskBtn = document.getElementById("add-task-btn");
 const taskTitle = document.getElementById("taskTitle");
 const taskDescription = document.getElementById("taskDescription");
 const taskDeadline = document.getElementById("taskDeadline");
+const taskTitleMinChar = taskTitle.parentElement.querySelector(".min-char");
+const taskTitleMaxChar = taskTitle.parentElement.querySelector(".max-char");
+const taskDescriptionMinChar =
+  taskDescription.parentElement.querySelector(".min-char");
+const taskDescriptionMaxChar =
+  taskDescription.parentElement.querySelector(".max-char");
+
+// Function to validate task title
+function validateTaskTitle() {
+  const value = taskTitle.value.trim();
+  if (value.length < 3) {
+    taskTitleMinChar.classList.add("disabled");
+  } else {
+    taskTitleMinChar.classList.remove("disabled");
+  }
+  if (value.length < 255 && value.length > 0) {
+    taskTitleMaxChar.classList.remove("disabled");
+  } else {
+    taskTitleMaxChar.classList.add("disabled");
+  }
+}
+
+// Function to validate task description
+function validateTaskDescription() {
+  const value = taskDescription.value.trim();
+  if (value.length === 0) {
+    taskDescriptionMinChar.classList.add("disabled");
+    taskDescriptionMaxChar.classList.add("disabled");
+    return;
+  }
+  const wordCount = value.split(/\s+/).filter((word) => word.length > 0).length;
+  if (wordCount < 4) {
+    taskDescriptionMinChar.classList.add("disabled");
+  } else {
+    taskDescriptionMinChar.classList.remove("disabled");
+  }
+  if (value.length < 255) {
+    taskDescriptionMaxChar.classList.remove("disabled");
+  } else {
+    taskDescriptionMaxChar.classList.add("disabled");
+  }
+}
+
+// Event listeners for task title validation
+taskTitle.addEventListener("input", () => {
+  validateTaskTitle();
+  saveFormData();
+});
+
+// Event listeners for task description validation
+taskDescription.addEventListener("input", () => {
+  validateTaskDescription();
+  saveFormData();
+});
 
 // Save form data to localStorage
 function saveFormData() {
@@ -34,6 +88,9 @@ function loadFormData() {
     taskStatus.value = formData.taskStatus || 1;
     taskDepartment.value = formData.taskDepartment;
     taskEmployee.value = formData.taskEmployee;
+
+    validateTaskTitle();
+    validateTaskDescription();
 
     if (formData.taskDepartment) {
       fetchEmployees();
@@ -218,13 +275,27 @@ async function addTask() {
 
   if (
     !name ||
-    !description ||
     !deadline ||
     !taskStatusValue ||
     !taskEmployeeValue ||
     !taskPriorityValue
   ) {
     return;
+  }
+
+  if (name.length < 3 || name.length > 255) {
+    alert("სათაური 3-დან 225 სიმბოლომდე უნდა იყოს");
+    return;
+  }
+
+  if (description.length > 0) {
+    const wordCount = description
+      .split(/\s+/)
+      .filter((word) => word.length > 0).length;
+    if (wordCount < 4 || description.length > 255) {
+      alert("აღწერა 4-დან 225 სიმბოლომდე უნდა იყოს");
+      return;
+    }
   }
 
   const data = {
