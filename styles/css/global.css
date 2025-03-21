@@ -250,6 +250,12 @@ body {
   border: 1px solid #d1d5db;
   border-radius: 6px;
   margin: 0.3rem 0;
+  margin-bottom: 0.6rem;
+}
+.modal-overlay .modal-form-row-col p {
+  color: rgba(67, 255, 100, 0.8509803922);
+  margin-bottom: 0.4rem;
+  font-weight: 300;
 }
 .modal-overlay .modal-form-row-col-imgBoX {
   display: flex;

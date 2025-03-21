@@ -22,6 +22,12 @@ const addEmployeeFiltration = document.querySelector(
 );
 const addEmployeeBtn = document.getElementById("addEmployee");
 const departmentsModal = document.getElementById("department");
+const nameInput = document.getElementById("name");
+const surnameInput = document.getElementById("surname");
+const nameMinChar = document.querySelector("#name-modal-box .min-char");
+const nameMaxChar = document.querySelector("#name-modal-box .max-char");
+const surnameMinChar = document.querySelector("#surname-modal-box .min-char");
+const surnameMaxChar = document.querySelector("#surname-modal-box .max-char");
 let avatar;
 
 // Open modal
@@ -48,6 +54,10 @@ cancelBtns.forEach((btn) => {
     fileInput.disabled = false;
     avatarImg.src = "";
     avatar = null;
+    nameMaxChar.classList.add("disabled");
+    nameMinChar.classList.add("disabled");
+    surnameMaxChar.classList.add("disabled");
+    surnameMinChar.classList.add("disabled");
   });
 });
 
@@ -68,6 +78,10 @@ dialog.addEventListener("click", (e) => {
     fileInput.disabled = false;
     avatarImg.src = "";
     avatar = null;
+    nameMaxChar.classList.add("disabled");
+    nameMinChar.classList.add("disabled");
+    surnameMaxChar.classList.add("disabled");
+    surnameMinChar.classList.add("disabled");
   }
 });
 
@@ -138,11 +152,54 @@ async function fetchDepartments() {
 }
 fetchDepartments();
 
+// Validate name field
+function validateName() {
+  const value = nameInput.value.trim();
+  if (value.length < 2) {
+    nameMinChar.classList.add("disabled");
+  } else {
+    nameMinChar.classList.remove("disabled");
+  }
+  if (value.length < 255 && value.length > 0) {
+    nameMaxChar.classList.remove("disabled");
+  } else {
+    nameMaxChar.classList.add("disabled");
+  }
+}
+
+// Validate surname field
+function validateSurname() {
+  const value = surnameInput.value.trim();
+  if (value.length < 2) {
+    surnameMinChar.classList.add("disabled");
+  } else {
+    surnameMinChar.classList.remove("disabled");
+  }
+  if (value.length < 255 && value.length > 0) {
+    surnameMaxChar.classList.remove("disabled");
+  } else {
+    surnameMaxChar.classList.add("disabled");
+  }
+}
+
+nameInput.addEventListener("input", validateName);
+surnameInput.addEventListener("input", validateSurname);
+
 // POST employee data
 async function addEmployees() {
   const name = document.getElementById("name").value;
   const surname = document.getElementById("surname").value;
   const department_id = document.getElementById("department").value;
+
+  // Validate name and surname before submitting
+  if (name.length < 2 || name.length > 255) {
+    alert("სახელი 2-დან 225 სიმბოლომდე უნდა იყოს");
+    return;
+  }
+  if (surname.length < 2 || surname.length > 255) {
+    alert("გვარი 2-დან 225 სიმბოლომდე უნდა იყოს");
+    return;
+  }
 
   const formData = new FormData();
   formData.append("name", name);
@@ -180,6 +237,10 @@ async function addEmployees() {
     fileInput.disabled = false;
     avatarImg.src = "";
     avatar = null;
+    nameMaxChar.classList.add("disabled");
+    nameMinChar.classList.add("disabled");
+    surnameMaxChar.classList.add("disabled");
+    surnameMinChar.classList.add("disabled");
 
     window.location.reload();
   } catch (error) {

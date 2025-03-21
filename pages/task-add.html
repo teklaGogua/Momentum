@@ -28,7 +28,7 @@
         </div>
         <form class="modal-form">
           <div class="modal-form-row">
-            <div class="modal-form-row-col">
+            <div class="modal-form-row-col" id="name-modal-box">
               <label class="modal-form-row-col-lable" for="name">სახელი*</label>
               <input
                 type="text"
@@ -37,8 +37,10 @@
                 autocomplete="on"
                 required
               />
+              <p class="min-char disabled">მინიმუმ 2 სიმბოლო</p>
+              <p class="max-char disabled">მაქსიმუმ 255 სიმბოლო</p>
             </div>
-            <div class="modal-form-row-col">
+            <div class="modal-form-row-col" id="surname-modal-box">
               <label class="modal-form-row-col-lable" for="surname"
                 >გვარი*</label
               >
@@ -48,6 +50,8 @@
                 id="surname"
                 required
               />
+              <p class="min-char disabled">მინიმუმ 2 სიმბოლო</p>
+              <p class="max-char disabled">მაქსიმუმ 255 სიმბოლო</p>
             </div>
           </div>
           <div class="modal-form-col">
