@@ -445,6 +445,9 @@ main .filtration-el-dropdown {
   background-color: #fff;
   z-index: 10;
 }
+main .filtration-el-dropdown #employees-container {
+  padding-right: 0;
+}
 main .filtration-el-dropdown-options {
   display: flex;
   flex-direction: column;
@@ -454,6 +457,13 @@ main .filtration-el-dropdown-options {
   width: max-content;
   overflow-y: auto;
   margin-bottom: 2.5rem;
+  padding-right: 38.5rem;
+}
+main .filtration-el-dropdown-options .all-employees {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  overflow-y: auto;
   padding-right: 38.5rem;
 }
 main .filtration-el-dropdown-options-el {

@@ -4,8 +4,10 @@ let previouslyClickedBtn = null;
 const checkBox = document.querySelectorAll(".filtration-el-dropdown-options");
 const departmentsContainer = document.getElementById("departments-container");
 const priorityContainer = document.getElementById("priority-container");
-const employeesContainer = document.getElementById("employees-container");
+const employeesContainer = document.querySelector(".all-employees");
 const addTask = document.querySelector(".task");
+let selectedFilters = { department: [], priority: [], employee: [] };
+let allTasks = [];
 
 const georgianMonths = [
   "იან",
@@ -215,16 +217,7 @@ async function fetchEmployees() {
     }
 
     const data = await res.json();
-
-    let employeeHTML = `<div class="filtration-el-dropdown-options-el add-employee-filtration" onclick="openModal()">
-                  <svg 
-                  class="active" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect class="add-img-stroke" x="0.75" y="0.75" width="16.5" height="16.5" rx="8.25" stroke="#8338EC" stroke-width="1.5"/>
-                  <path class="add-img-fill" d="M9.576 8.456H13.176V9.656H9.576V13.304H8.256V9.656H4.656V8.456H8.256V4.808H9.576V8.456Z" fill="#8338EC"/>
-                  </svg>
-                <p class="filtration-el-dropdown-options-el-text add-text">დაამატე თანამშრომელი</p>
-              </div>`;
-
+    let employeeHTML = "";
     data.forEach((employee) => {
       employeeHTML += `<div class="filtration-el-dropdown-options-el">
                 <div class="icon-for-marking">
@@ -280,7 +273,7 @@ async function fetchEmployees() {
                 <p class="filtration-el-dropdown-options-el-text">${employee.name} ${employee.surname}</p>
               </div>`;
     });
-    employeesContainer.innerHTML = employeeHTML;
+    employeesContainer.innerHTML += employeeHTML;
   } catch (error) {
     console.log("Error: ", error);
   }
@@ -354,19 +347,122 @@ function checkboxFunc() {
       const btn = e.target.closest(".icon-for-marking");
       if (!btn) return;
 
+      // Display checked or empty btn's
       const emptyBtn = btn.querySelector(
         ".filtration-el-dropdown-options-el-empty"
       );
       const markedBtn = btn.querySelector(
         ".filtration-el-dropdown-options-el-checked"
       );
-
       emptyBtn.classList.toggle("active");
       markedBtn.classList.toggle("active");
+
+      // Finds out which dropdown is clicked
+      const containerId = box.id;
+      let filterType;
+      if (containerId === "departments-container") {
+        filterType = "department";
+      } else if (containerId === "priority-container") {
+        filterType = "priority";
+      } else if (containerId === "employees-container") {
+        filterType = "employee";
+      } else {
+        return;
+      }
+
+      // Get option text
+      const text = btn
+        .closest(".filtration-el-dropdown-options-el")
+        .querySelector(".filtration-el-dropdown-options-el-text")
+        .textContent.trim();
+
+      // Update selectedFilters
+      const index = selectedFilters[filterType].indexOf(text);
+
+      if (index === -1) {
+        if (filterType === "employee") {
+          selectedFilters[filterType] = [text];
+          resetEmployeeCheckboxes(text);
+        } else {
+          selectedFilters[filterType].push(text);
+        }
+      } else {
+        selectedFilters[filterType].splice(index, 1);
+      }
     });
   });
 }
 checkboxFunc();
+
+// Makes Employee dropdown single-select
+function resetEmployeeCheckboxes(selectedText) {
+  const employeeOptions = document.querySelectorAll(
+    ".all-employees .filtration-el-dropdown-options-el"
+  );
+
+  employeeOptions.forEach((option) => {
+    const text = option
+      .querySelector(".filtration-el-dropdown-options-el-text")
+      .textContent.trim();
+
+    if (text !== selectedText) {
+      const emptyBtn = option.querySelector(
+        ".filtration-el-dropdown-options-el-empty"
+      );
+      const markedBtn = option.querySelector(
+        ".filtration-el-dropdown-options-el-checked"
+      );
+      emptyBtn.classList.add("active");
+      markedBtn.classList.remove("active");
+    }
+  });
+}
+
+// Filter and render tasks
+function applyFilters() {
+  const filteredTasks = allTasks.filter((task) => {
+    const deptMatch =
+      selectedFilters.department.length === 0 ||
+      selectedFilters.department.includes(task.department.name);
+    const priorityMatch =
+      selectedFilters.priority.length === 0 ||
+      selectedFilters.priority.includes(task.priority.name);
+
+    const employeeName = task.employee
+      ? `${task.employee.name} ${task.employee.surname}`
+      : "";
+    const employeeMatch =
+      selectedFilters.employee.length === 0 ||
+      selectedFilters.employee.includes(employeeName);
+
+    return deptMatch && priorityMatch && employeeMatch;
+  });
+
+  renderTasks(filteredTasks);
+}
+
+document
+  .querySelectorAll(".filtration-el-dropdown-btnBox-btn")
+  .forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      applyFilters();
+
+      // Close dropdown
+      const dropdown = btn.closest(".filtration-el-dropdown");
+      if (dropdown) {
+        dropdown.classList.remove("active");
+        const filtrationBtn = document.querySelector(
+          `[data-dropdown="${dropdown.id.replace("-dropdown", "")}"]`
+        );
+        if (filtrationBtn) {
+          filtrationBtn.querySelector(".arrow-up").classList.remove("active");
+          filtrationBtn.querySelector(".arrow-down").classList.add("active");
+          filtrationBtn.querySelector("p").style.color = "rgb(33, 37, 41)";
+        }
+      }
+    });
+  });
 
 // Get all tasks
 async function fetchData() {
@@ -386,48 +482,61 @@ async function fetchData() {
     }
 
     const data = await res.json();
+    allTasks = data;
+    renderTasks(allTasks);
+  } catch (error) {
+    console.error("Error: ", error);
+  }
+}
+fetchData();
 
-    let taskHTML = "";
-    const statusHTML = {};
-    data.forEach((task) => {
-      // Status
-      const statusId = status[task.status.id];
+function renderTasks(tasks) {
+  const statusHTML = {
+    starter: [],
+    inProgress: [],
+    testing: [],
+    finished: [],
+  };
 
-      // Priority Colors
-      const borderColor = priorityColors[task.priority.id];
+  tasks.forEach((task) => {
+    // Status
+    const statusId = status[task.status.id];
 
-      // department
-      const department = departments[task.department.id][0];
-      const departmentColor = departments[task.department.id][1];
+    // Priority Colors
+    const borderColor = priorityColors[task.priority.id];
 
-      // Date Formating
-      const date = new Date(task.due_date);
+    // department
+    const department = departments[task.department.id][0];
+    const departmentColor = departments[task.department.id][1];
 
-      const day = date.getUTCDate();
-      const month = date.getUTCMonth();
-      const year = date.getUTCFullYear();
+    // Date Formating
+    const date = new Date(task.due_date);
 
-      const monthName = georgianMonths[month];
-      const formattedDate = `${day} ${monthName}, ${year}`;
+    const day = date.getUTCDate();
+    const month = date.getUTCMonth();
+    const year = date.getUTCFullYear();
 
-      // Description
-      let description = "";
-      if (task.description) {
-        if (task.description.length <= 100) {
-          description = task.description;
-        } else {
-          description = task.description.substring(0, 100) + "...";
-        }
+    const monthName = georgianMonths[month];
+    const formattedDate = `${day} ${monthName}, ${year}`;
+
+    // Description
+    let description = "";
+    if (task.description) {
+      if (task.description.length <= 100) {
+        description = task.description;
+      } else {
+        description = task.description.substring(0, 100) + "...";
       }
+    }
 
-      taskHTML = `<div class="tasks-el-box-card" onclick="openTask(${task.id})">
+    taskHTML = `<div class="tasks-el-box-card" onclick="openTask(${task.id})">
               <div class="tasks-el-box-card-header">
                 <div class="tasks-el-box-card-header-tags">
                   <div class="tasks-el-box-card-header-tags-priority"  style="border-color: ${borderColor} !important;">
                     <img src="${task.priority.icon}" alt="priority icon" />
                     <p style="color: ${borderColor} !important;">${
-        task.priority.name
-      }</p>
+      task.priority.name
+    }</p>
                   </div>
                   <div class="tasks-el-box-card-header-tags-department" style="background-color: ${departmentColor}">
                     <p>${department}</p>
@@ -446,7 +555,7 @@ async function fetchData() {
               <div class="tasks-el-box-info">
                 <img src="${
                   task.employee?.avatar || "images/error/default-pfp.png"
-                }" alt="avatar" 
+                }" alt="avatar"
                 onerror="this.onerror=null;this.src='./images/error/default-pfp.png';"/>
                 <div class="tasks-el-box-info-comments">
                   <img src="images/icons/comments.svg" alt="Comments" />
@@ -456,21 +565,26 @@ async function fetchData() {
               </div>
               `;
 
-      if (!statusHTML[statusId]) statusHTML[statusId] = [];
+    if (statusHTML[statusId]) {
       statusHTML[statusId].push(taskHTML);
-    });
+    }
 
-    Object.keys(statusHTML).forEach((statusId) => {
-      const container = document.getElementById(statusId);
+    Object.keys(statusHTML).forEach((statusKey) => {
+      const container = document.getElementById(statusKey);
       if (container) {
-        container.innerHTML = statusHTML[statusId].join("");
+        container.innerHTML =
+          statusHTML[statusKey].join("") ||
+          '<div class="no-tasks">No tasks in this category</div>';
       }
     });
-  } catch (error) {
-    console.error("Error: ", error);
-  }
+  });
+
+  // Update DOM
+  Object.keys(status).forEach((key) => {
+    const container = document.getElementById(status[key]);
+    container.innerHTML = statusHTML[status[key]]?.join("") || "";
+  });
 }
-fetchData();
 
 // Open task page
 function openTask(taskId) {

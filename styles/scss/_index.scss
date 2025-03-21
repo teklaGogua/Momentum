@@ -67,6 +67,10 @@ main {
         background-color: #fff;
         z-index: 10;
 
+        #employees-container {
+          padding-right: 0;
+        }
+
         &-options {
           display: flex;
           flex-direction: column;
@@ -76,6 +80,14 @@ main {
           overflow-y: auto;
           margin-bottom: 2.5rem;
           padding-right: 38.5rem;
+
+          .all-employees {
+            display: flex;
+            flex-direction: column;
+            gap: 2.2rem;
+            overflow-y: auto;
+            padding-right: 38.5rem;
+          }
 
           &-el {
             display: flex;
@@ -325,4 +337,3 @@ main {
     }
   }
 }
-
