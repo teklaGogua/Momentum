@@ -29,9 +29,11 @@ Momentum is a web application where the company Redberry can manage employees an
 
 ### Features
 
-- **To-Do List**: Add and edit tasks to keep track of activities.
-- **Add Employee**: Can add employees.
-- **Comment Section**: Can comment and reply to them
+- **To-Do List**: Add tasks to keep track of activities
+- **Add Employee**: Can add employees
+- **Filtration**: Can filtrate data by departments, employees and priority
+- **Comment Section**: Can comment and reply to task
+- **Validation**: Validates data dynamically
 
 ### Acknowledgements
 

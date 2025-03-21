@@ -202,7 +202,7 @@ async function fetchDepartments() {
     const savedDepartment = formData?.taskDepartment || "";
 
     if (!savedDepartment) {
-      departmentHTML = `<option value="" disabled selected>აირჩიეთ სტატუსი</option>`;
+      departmentHTML = `<option value="" disabled selected>აირჩიეთ დეპარტამენტი</option>`;
     }
 
     departments.forEach((department) => {

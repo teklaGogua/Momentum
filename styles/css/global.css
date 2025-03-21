@@ -761,7 +761,7 @@ main .task-container .task-details-el-info select option {
   color: #0d0f10;
 }
 main .task-container .comments {
-  background-color: #ddd2ff;
+  background-color: rgba(248, 243, 254, 0.65);
   max-width: 74.1rem;
   width: 100%;
   margin-top: 5.9rem;
