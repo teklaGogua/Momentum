@@ -34,10 +34,10 @@ function loadFormData() {
     taskStatus.value = formData.taskStatus || 1;
     taskDepartment.value = formData.taskDepartment;
     taskEmployee.value = formData.taskEmployee;
-  }
 
-  if (formData.taskDepartment) {
-    fetchEmployees();
+    if (formData.taskDepartment) {
+      fetchEmployees();
+    }
   }
 }
 
