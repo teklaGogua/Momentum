@@ -255,7 +255,7 @@ async function addTask() {
     }
 
     clearFormData();
-    window.location.href = `/`;
+    window.location.href = `../`;
   } catch (error) {
     console.log("Error: ", error);
   }
